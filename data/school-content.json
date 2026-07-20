@@ -1,0 +1,74 @@
+{
+  "hero": {
+    "badge": "🌱 Enviro-Entrepreneurship Digital School",
+    "title": "SMP Citra Bangsa Bondowoso",
+    "subtitle": "Mewujudkan generasi berkarakter Robbani, peduli kelestarian lingkungan hidup, dan berdaya saing global melalui jiwa kewirausahaan kreatif.",
+    "videoUrl": "https://www.youtube.com/embed/IXqJI7kQe50?si=HWFJd0W4PKgkAoed"
+  },
+  "stats": [
+    {
+      "label": "Siswa Aktif",
+      "value": 250
+    },
+    {
+      "label": "Guru & Staf",
+      "value": 20
+    },
+    {
+      "label": "Prestasi Siswa",
+      "value": 35
+    },
+    {
+      "label": "Program Eco",
+      "value": 12
+    }
+  ],
+  "visiMisi": {
+    "visi": "Terwujudnya Lembaga Pendidikan Islam yang Unggul untuk Melahirkan Generasi Robbani, Berkarakter Enviropreneur, dan Berdaya Saing Global.",
+    "misi": [
+      "Menyelenggarakan pendidikan holistik berbasis karakter Robbani and akhlak mulia.",
+      "Membudayakan sikap ramah lingkungan hidup dan pelestarian alam (Enviro).",
+      "Melatih keterampilan wirausaha yang kreatif, jujur, mandiri, dan inovatif (Preneur).",
+      "Mengembangkan literasi dan teknologi digital guna mendukung daya saing global."
+    ]
+  },
+  "programs": [
+    {
+      "title": "Eco-Environment (Enviro)",
+      "desc": "Pembelajaran aktif dalam menjaga ekosistem bumi. Praktek langsung meliputi pertanian hidroponik, pengolahan kompos dari limbah sekolah, serta manajemen daur ulang kreatif.",
+      "badge": "Eco-School"
+    },
+    {
+      "title": "Entrepreneurship (Preneur)",
+      "desc": "Membangun jiwa kepemimpinan dan kewirausahaan sejak dini. Melalui kegiatan Market Day, penyusunan business plan sederhana, dan pameran karya kreatif inovasi mandiri.",
+      "badge": "Wirausaha"
+    },
+    {
+      "title": "Pembelajaran Digital",
+      "desc": "Menghadapi era digital dengan kurikulum teknologi terintegrasi. Siswa dibekali keterampilan dasar pemrograman (coding), literasi digital, dan penggunaan platform CBT modern.",
+      "badge": "Digital Class"
+    }
+  ],
+  "navItems": [
+    {
+      "label": "Beranda",
+      "href": "#beranda"
+    },
+    {
+      "label": "Visi & Misi",
+      "href": "#visi-misi"
+    },
+    {
+      "label": "Kegiatan Live",
+      "href": "#kegiatan"
+    },
+    {
+      "label": "Program Unggulan",
+      "href": "#program"
+    },
+    {
+      "label": "Hubungi Kami",
+      "href": "#kontak"
+    }
+  ]
+}
