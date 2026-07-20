@@ -75,6 +75,7 @@ export default function Home() {
   const [formStatus, setFormStatus] = useState({ submitted: false, message: "" });
   const [heroVersion, setHeroVersion] = useState(0);
   const [prestasiFilter, setPrestasiFilter] = useState("Semua");
+  const [activeSocialTab, setActiveSocialTab] = useState("instagram");
   
   // Stats Animation Counter Trigger
   const [counters, setCounters] = useState({ students: 0, teachers: 0, awards: 0, ecos: 0 });
@@ -286,9 +287,6 @@ export default function Home() {
                 &ldquo;{content.visiMisi.visi}&rdquo;
               </p>
             </div>
-            <div className="mt-8 text-xs text-slate-500 font-body">
-              * Didasarkan pada kurikulum nasional terintegrasi nilai-nilai keislaman dan lingkungan hidup.
-            </div>
           </motion.div>
 
           {/* Misi card */}
@@ -331,11 +329,61 @@ export default function Home() {
                 Pantau terus keseruan, prestasi, dan proyek lingkungan terbaru siswa kami secara langsung dari media sosial sekolah.
               </p>
             </div>
+
+            {/* Tab Toggles for Instagram, YouTube and TikTok */}
+            <div className="flex flex-wrap items-center justify-center bg-slate-950/80 p-1.5 rounded-full border border-slate-800/80 shadow-md gap-1">
+              <button
+                onClick={() => setActiveSocialTab("instagram")}
+                className={`px-5 py-2 rounded-full font-display text-xs font-semibold uppercase tracking-wider transition-all duration-300 flex items-center space-x-1.5 ${
+                  activeSocialTab === "instagram"
+                    ? "bg-emerald-500 text-slate-950 shadow-md"
+                    : "text-slate-400 hover:text-slate-200"
+                }`}
+              >
+                <span>📸</span>
+                <span>Instagram</span>
+              </button>
+              <button
+                onClick={() => setActiveSocialTab("youtube")}
+                className={`px-5 py-2 rounded-full font-display text-xs font-semibold uppercase tracking-wider transition-all duration-300 flex items-center space-x-1.5 ${
+                  activeSocialTab === "youtube"
+                    ? "bg-emerald-500 text-slate-950 shadow-md"
+                    : "text-slate-400 hover:text-slate-200"
+                }`}
+              >
+                <span>📺</span>
+                <span>YouTube</span>
+              </button>
+              <button
+                onClick={() => setActiveSocialTab("tiktok")}
+                className={`px-5 py-2 rounded-full font-display text-xs font-semibold uppercase tracking-wider transition-all duration-300 flex items-center space-x-1.5 ${
+                  activeSocialTab === "tiktok"
+                    ? "bg-emerald-500 text-slate-950 shadow-md"
+                    : "text-slate-400 hover:text-slate-200"
+                }`}
+              >
+                <span>🎵</span>
+                <span>TikTok</span>
+              </button>
+            </div>
           </div>
 
-          {/* Elfsight Instagram Live Feed Widget */}
+          {/* Elfsight Widgets Container */}
           <div className="w-full bg-slate-950/30 border border-slate-900/60 p-4 sm:p-6 rounded-3xl shadow-xl min-h-[400px]">
-            <div className="elfsight-app-187feef9-b76b-4fed-86c3-2a6e1f74ae9c" data-elfsight-app-lazy></div>
+            {/* Instagram Widget */}
+            <div className={activeSocialTab === "instagram" ? "block" : "hidden"}>
+              <div className="elfsight-app-187feef9-b76b-4fed-86c3-2a6e1f74ae9c" data-elfsight-app-lazy></div>
+            </div>
+
+            {/* YouTube Widget */}
+            <div className={activeSocialTab === "youtube" ? "block" : "hidden"}>
+              <div className="elfsight-app-13d28b96-fbb0-42b6-8ed9-ade5d727369c" data-elfsight-app-lazy></div>
+            </div>
+
+            {/* TikTok Widget */}
+            <div className={activeSocialTab === "tiktok" ? "block" : "hidden"}>
+              <div className="elfsight-app-869619bc-bbda-4b58-a98e-21fb6ef26307" data-elfsight-app-lazy></div>
+            </div>
           </div>
         </div>
       </section>
@@ -384,6 +432,9 @@ export default function Home() {
               </motion.div>
             );
           })}
+        </div>
+        <div className="mt-12 text-center text-xs text-slate-500 font-body">
+          * Didasarkan pada kurikulum nasional terintegrasi nilai-nilai keislaman dan lingkungan hidup.
         </div>
       </section>
 
