@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Script from "next/script";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Play, RefreshCw, Award, BookOpen, Users, Leaf, 
@@ -310,13 +311,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Live School Activities */}
-      <section id="kegiatan" className="py-24 bg-slate-950 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-gold/5 rounded-full blur-[120px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 gap-6">
+      {/* Live Social Feed Section */}
+      <section id="kegiatan" className="py-24 bg-slate-900/20 border-y border-slate-900/60 relative overflow-hidden">
+        <Script src="https://elfsightcdn.com/platform.js" strategy="afterInteractive" />
+        <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-emerald-500/5 blur-[120px] pointer-events-none animate-pulse-slow" />
+        <div className="absolute bottom-10 right-10 w-72 h-72 rounded-full bg-brand-gold/5 blur-[120px] pointer-events-none animate-pulse-slow" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
+          {/* Header block */}
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between border-b border-slate-900 pb-8 gap-6">
             <div className="space-y-4 text-left">
               <span className="font-display text-emerald-400 font-bold uppercase tracking-wider text-xs">
                 Koneksi Sosial & Berita Terkini
@@ -328,134 +331,12 @@ export default function Home() {
                 Pantau terus keseruan, prestasi, dan proyek lingkungan terbaru siswa kami secara langsung dari media sosial sekolah.
               </p>
             </div>
-            
-            {/* Sync trigger button */}
-            <button
-              id="btn-sync-feeds"
-              onClick={handleRefresh}
-              disabled={isRefreshing}
-              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full font-display text-sm font-semibold border border-slate-800 bg-slate-900 hover:bg-slate-800 text-slate-200 transition-all duration-300 disabled:opacity-50"
-            >
-              <RefreshCw className={`w-4 h-4 text-emerald-400 ${isRefreshing ? "animate-spin" : ""}`} />
-              <span>{isRefreshing ? "Menyinkronkan..." : "Sinkronkan Live Feed"}</span>
-            </button>
           </div>
 
-          {/* Media Platform Filters */}
-          <div className="flex flex-wrap items-center gap-2 mb-10">
-            {["all", "instagram", "youtube", "tiktok", "facebook"].map((platform) => (
-              <button
-                key={platform}
-                id={`filter-${platform}`}
-                onClick={() => setFilter(platform)}
-                className={`px-5 py-2 rounded-full font-display text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
-                  filter === platform
-                    ? "bg-emerald-500 text-slate-950 shadow-md"
-                    : "bg-slate-900 hover:bg-slate-800 text-slate-400 border border-slate-800/80"
-                }`}
-              >
-                {platform === "all" ? "Semua Platform" : platform}
-              </button>
-            ))}
+          {/* Elfsight Instagram Live Feed Widget */}
+          <div className="w-full bg-slate-950/30 border border-slate-900/60 p-4 sm:p-6 rounded-3xl shadow-xl min-h-[400px]">
+            <div className="elfsight-app-187feef9-b76b-4fed-86c3-2a6e1f74ae9c" data-elfsight-app-lazy></div>
           </div>
-
-          {/* Social Feeds Masonry Grid */}
-          <motion.div
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredFeeds.map((feed) => (
-                <motion.div
-                  key={feed.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
-                  className="glass-panel glass-panel-hover rounded-2xl overflow-hidden flex flex-col justify-between border-slate-800/60 shadow-xl group"
-                >
-                  <div className="relative aspect-video w-full overflow-hidden bg-slate-900">
-                    <img
-                      src={feed.thumbnail}
-                      alt={feed.title || "Post thumbnail"}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
-                    />
-                    
-                    {/* Platform Badge icon */}
-                    <span className={`absolute top-4 right-4 px-3 py-1.5 rounded-full font-display text-[10px] font-bold tracking-wider uppercase text-white shadow-md flex items-center space-x-1 ${
-                      feed.platform === "instagram" ? "bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600" :
-                      feed.platform === "youtube" ? "bg-red-600" :
-                      feed.platform === "tiktok" ? "bg-black border border-slate-800" : "bg-blue-600"
-                    }`}>
-                      <span>
-                        {feed.platform === "instagram" ? "📸" :
-                         feed.platform === "youtube" ? "📺" :
-                         feed.platform === "tiktok" ? "🎵" : "👥"}
-                      </span>
-                      <span>{feed.platform}</span>
-                    </span>
-
-                    {/* Overlay Play button for video platforms */}
-                    {(feed.platform === "youtube" || feed.platform === "tiktok") && (
-                      <button
-                        onClick={() => {
-                          if (feed.platform === "youtube") {
-                            setActiveVideo(feed.videoUrl);
-                          } else {
-                            setActiveVideo(feed.videoUrl);
-                          }
-                        }}
-                        className="absolute inset-0 flex items-center justify-center bg-slate-950/40 hover:bg-slate-950/20 transition-all duration-300 group"
-                        aria-label="Play video"
-                      >
-                        <div className="w-14 h-14 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                          <Play className="w-6 h-6 fill-slate-950 ml-0.5" />
-                        </div>
-                      </button>
-                    )}
-                  </div>
-
-                  {/* Card Description */}
-                  <div className="p-6 space-y-4 flex-grow flex flex-col justify-between">
-                    <div className="space-y-2">
-                      <span className="font-body text-xs text-slate-500">
-                        {new Date(feed.date).toLocaleDateString("id-ID", {
-                          day: "numeric",
-                          month: "long",
-                          year: "numeric"
-                        })}
-                      </span>
-                      <h3 className="font-display font-bold text-white text-base leading-snug group-hover:text-emerald-400 transition-colors duration-200">
-                        {feed.title || (feed.platform === "instagram" ? "Instagram Post" : "Social Update")}
-                      </h3>
-                      <p className="font-body text-xs text-slate-400 leading-relaxed line-clamp-3">
-                        {feed.description}
-                      </p>
-                    </div>
-
-                    <div className="pt-4 border-t border-slate-900/60 flex items-center justify-between text-xs text-slate-400">
-                      <div className="flex items-center space-x-3">
-                        <span>❤️ {feed.likes} Likes</span>
-                        {feed.comments && <span>💬 {feed.comments}</span>}
-                        {feed.views && <span>👁️ {feed.views}</span>}
-                        {feed.shares && <span>🔄 {feed.shares}</span>}
-                      </div>
-                      
-                      <a
-                        href={feed.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-emerald-400 hover:text-emerald-300 inline-flex items-center font-semibold"
-                      >
-                        Buka <ExternalLink className="w-3.5 h-3.5 ml-1" />
-                      </a>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
         </div>
       </section>
 
@@ -471,7 +352,7 @@ export default function Home() {
           <div className="w-20 h-1 bg-gradient-to-r from-brand-green-light to-brand-gold mx-auto rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {content.programs.map((program, idx) => {
             const Icon = PROGRAM_ICONS[idx] || Award;
             const design = PROGRAM_COLORS[idx] || { bg: "from-slate-500/20 to-slate-500/5", border: "border-slate-500/30" };

@@ -6,10 +6,22 @@
     "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
   },
   "stats": [
-    { "label": "Siswa Aktif", "value": 250 },
-    { "label": "Guru & Staf", "value": 20 },
-    { "label": "Prestasi Nasional", "value": 15 },
-    { "label": "Target Tahfidz (Juz)", "value": 15 }
+    {
+      "label": "Siswa Aktif",
+      "value": 250
+    },
+    {
+      "label": "Guru & Staf",
+      "value": 20
+    },
+    {
+      "label": "Prestasi Nasional",
+      "value": 15
+    },
+    {
+      "label": "Target Tahfidz (Juz)",
+      "value": 15
+    }
   ],
   "visiMisi": {
     "visi": "Mewujudkan peserta didik yang berbudi, mandiri dan berprestasi.",
@@ -37,30 +49,116 @@
     }
   ],
   "navItems": [
-    { "label": "Beranda", "href": "#beranda" },
-    { "label": "Visi & Misi", "href": "#visi-misi" },
-    { "label": "Kegiatan Live", "href": "#kegiatan" },
-    { "label": "Program", "href": "#program" },
-    { "label": "Prestasi", "href": "#prestasi" },
-    { "label": "Hubungi Kami", "href": "#kontak" }
+    {
+      "label": "Beranda",
+      "href": "#beranda"
+    },
+    {
+      "label": "Visi & Misi",
+      "href": "#visi-misi"
+    },
+    {
+      "label": "Kegiatan Live",
+      "href": "#kegiatan"
+    },
+    {
+      "label": "Program",
+      "href": "#program"
+    },
+    {
+      "label": "Prestasi",
+      "href": "#prestasi"
+    },
+    {
+      "label": "Hubungi Kami",
+      "href": "#kontak"
+    }
   ],
   "prestasi": [
-    { "kategori": "Nasional", "nama": "Juara 1 Tanding Pra Remaja Putra", "pemenang": "Kejuaraan Pencak Silat Jember National (Piala Kemenpora)" },
-    { "kategori": "Nasional", "nama": "Juara 1 Pomsae Junior Putra", "pemenang": "Piala Kemenpora Taekwondo Bhayangkara Presisi II Yogyakarta" },
-    { "kategori": "Nasional", "nama": "Juara 2 Tanding Pra Remaja Putra", "pemenang": "Kejuaraan Pencak Silat Jember National (Piala Kemenpora)" },
-    { "kategori": "Nasional", "nama": "Juara 2 Seni Tunggal Tangan Putri", "pemenang": "Kejuaraan Pencak Silat Jember National (Piala Kemenpora)" },
-    { "kategori": "Nasional", "nama": "Juara 3 Tanding Pra Remaja Putra", "pemenang": "Kejuaraan Pencak Silat IPSI Malang Championship (Piala Kemenpora)" },
-    { "kategori": "Provinsi", "nama": "Juara 1 Kumite 30 kg", "pemenang": "Unmuh Jember Open Karate" },
-    { "kategori": "Provinsi", "nama": "Juara 2 Kumite +50 kg SMP Putra", "pemenang": "Kejuaraan Karate Piala Panglima TNI Surabaya" },
-    { "kategori": "Provinsi", "nama": "Juara 2 Kata Perorangan SMP Putra", "pemenang": "5th Festival Karate Championship Piala Pangdivif" },
-    { "kategori": "Provinsi", "nama": "Juara 3 Kumite +70 kg", "pemenang": "Unmuh Jember Open Karate" },
-    { "kategori": "Provinsi", "nama": "Juara 3 Kata Beregu SMP Putra", "pemenang": "5th Festival Karate Championship Piala Pangdivif" },
-    { "kategori": "Kabupaten", "nama": "Juara 1 Story Telling", "pemenang": "Angel Firdausa - Smasa Ekskul Competition" },
-    { "kategori": "Kabupaten", "nama": "Juara 1 Lomba Tartil Al-Qur'an", "pemenang": "Tsabitah Khairun Nisa - Ekskul Competition" },
-    { "kategori": "Kabupaten", "nama": "Juara 1 Seni Tunggal Putri", "pemenang": "Pencak Silat - Bupati Cup IPSI" },
-    { "kategori": "Kabupaten", "nama": "Juara 1 Tanding Putra", "pemenang": "Pencak Silat - Bupati Cup IPSI" },
-    { "kategori": "Kabupaten", "nama": "Juara 1 Tanding Putri", "pemenang": "Pencak Silat - Bupati Cup IPSI" },
-    { "kategori": "Kabupaten", "nama": "Juara 2 Lomba Bahasa Inggris", "pemenang": "Dies Natalis SMKN 1 Bondowoso" },
-    { "kategori": "Kabupaten", "nama": "Juara 3 Lomba E-Sport MLBB", "pemenang": "Kejuaraan ESI Bondowoso" }
+    {
+      "kategori": "Nasional",
+      "nama": "Juara 1 Tanding Pra Remaja Putra",
+      "pemenang": "Kejuaraan Pencak Silat Jember National (Piala Kemenpora)"
+    },
+    {
+      "kategori": "Nasional",
+      "nama": "Juara 1 Pomsae Junior Putra",
+      "pemenang": "Piala Kemenpora Taekwondo Bhayangkara Presisi II Yogyakarta"
+    },
+    {
+      "kategori": "Nasional",
+      "nama": "Juara 2 Tanding Pra Remaja Putra",
+      "pemenang": "Kejuaraan Pencak Silat Jember National (Piala Kemenpora)"
+    },
+    {
+      "kategori": "Nasional",
+      "nama": "Juara 2 Seni Tunggal Tangan Putri",
+      "pemenang": "Kejuaraan Pencak Silat Jember National (Piala Kemenpora)"
+    },
+    {
+      "kategori": "Nasional",
+      "nama": "Juara 3 Tanding Pra Remaja Putra",
+      "pemenang": "Kejuaraan Pencak Silat IPSI Malang Championship (Piala Kemenpora)"
+    },
+    {
+      "kategori": "Provinsi",
+      "nama": "Juara 1 Kumite 30 kg",
+      "pemenang": "Unmuh Jember Open Karate"
+    },
+    {
+      "kategori": "Provinsi",
+      "nama": "Juara 2 Kumite +50 kg SMP Putra",
+      "pemenang": "Kejuaraan Karate Piala Panglima TNI Surabaya"
+    },
+    {
+      "kategori": "Provinsi",
+      "nama": "Juara 2 Kata Perorangan SMP Putra",
+      "pemenang": "5th Festival Karate Championship Piala Pangdivif"
+    },
+    {
+      "kategori": "Provinsi",
+      "nama": "Juara 3 Kumite +70 kg",
+      "pemenang": "Unmuh Jember Open Karate"
+    },
+    {
+      "kategori": "Provinsi",
+      "nama": "Juara 3 Kata Beregu SMP Putra",
+      "pemenang": "5th Festival Karate Championship Piala Pangdivif"
+    },
+    {
+      "kategori": "Kabupaten",
+      "nama": "Juara 1 Story Telling",
+      "pemenang": "Angel Firdausa - Smasa Ekskul Competition"
+    },
+    {
+      "kategori": "Kabupaten",
+      "nama": "Juara 1 Lomba Tartil Al-Qur'an",
+      "pemenang": "Tsabitah Khairun Nisa - Ekskul Competition"
+    },
+    {
+      "kategori": "Kabupaten",
+      "nama": "Juara 1 Seni Tunggal Putri",
+      "pemenang": "Pencak Silat - Bupati Cup IPSI"
+    },
+    {
+      "kategori": "Kabupaten",
+      "nama": "Juara 1 Tanding Putra",
+      "pemenang": "Pencak Silat - Bupati Cup IPSI"
+    },
+    {
+      "kategori": "Kabupaten",
+      "nama": "Juara 1 Tanding Putri",
+      "pemenang": "Pencak Silat - Bupati Cup IPSI"
+    },
+    {
+      "kategori": "Kabupaten",
+      "nama": "Juara 2 Lomba Bahasa Inggris",
+      "pemenang": "Dies Natalis SMKN 1 Bondowoso"
+    },
+    {
+      "kategori": "Kabupaten",
+      "nama": "Juara 3 Lomba E-Sport MLBB",
+      "pemenang": "Kejuaraan ESI Bondowoso"
+    }
   ]
 }

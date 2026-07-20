@@ -31,6 +31,9 @@ export default function AdminDashboard() {
   // New Navigation Item form state
   const [newNavItem, setNewNavItem] = useState({ label: "", href: "" });
 
+  // New Program form state
+  const [newProgram, setNewProgram] = useState({ title: "", desc: "", badge: "" });
+
   // New Activity form state
   const [newActivity, setNewActivity] = useState({
     platform: "instagram",
@@ -233,6 +236,23 @@ export default function AdminDashboard() {
     const newPrograms = [...content.programs];
     newPrograms[idx][field] = val;
     setContent(prev => ({ ...prev, programs: newPrograms }));
+  };
+
+  const handleAddProgram = (e) => {
+    e.preventDefault();
+    if (!newProgram.title || !newProgram.desc) return;
+    const updated = [...content.programs, newProgram];
+    setContent(prev => ({ ...prev, programs: updated }));
+    setNewProgram({ title: "", desc: "", badge: "" });
+    showStatus("success", `Program baru "${newProgram.title}" berhasil ditambahkan! Klik "Simpan Perubahan" untuk menyimpan secara permanen.`);
+  };
+
+  const handleDeleteProgram = (idx) => {
+    if (confirm("Apakah Anda yakin ingin menghapus program unggulan ini?")) {
+      const updated = content.programs.filter((_, i) => i !== idx);
+      setContent(prev => ({ ...prev, programs: updated }));
+      showStatus("success", "Program telah dihapus! Klik 'Simpan Perubahan' untuk menerapkan.");
+    }
   };
 
   // Dynamic Navigation Link helpers
@@ -821,13 +841,74 @@ export default function AdminDashboard() {
             <div className="glass-panel rounded-3xl p-6 sm:p-8 border-slate-900 space-y-8 shadow-lg">
               <div className="border-b border-slate-900 pb-4">
                 <h2 className="font-display font-bold text-lg text-white">Program Unggulan Sekolah</h2>
-                <p className="text-slate-400 text-xs">Ubah judul, badge program, dan isi deskripsi 3 program utama di website.</p>
+                <p className="text-slate-400 text-xs">Ubah judul, badge program, dan isi deskripsi program utama di website. Anda juga bisa menambahkan program baru.</p>
               </div>
 
+              {/* Form Tambah Program Baru */}
+              <div className="p-6 rounded-2xl bg-slate-950/40 border border-slate-900 space-y-4">
+                <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider block">Tambah Program Baru</span>
+                <form onSubmit={handleAddProgram} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider block">Nama Program</label>
+                      <input
+                        type="text"
+                        placeholder="Contoh: Heutagogy Learning"
+                        value={newProgram.title}
+                        onChange={(e) => setNewProgram(prev => ({ ...prev, title: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm font-semibold"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider block">Badge Program</label>
+                      <input
+                        type="text"
+                        placeholder="Contoh: Personalisasi"
+                        value={newProgram.badge}
+                        onChange={(e) => setNewProgram(prev => ({ ...prev, badge: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider block">Penjelasan Lengkap</label>
+                    <textarea
+                      placeholder="Masukkan deskripsi program secara lengkap di sini..."
+                      value={newProgram.desc}
+                      onChange={(e) => setNewProgram(prev => ({ ...prev, desc: e.target.value }))}
+                      rows="3"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm resize-none"
+                      required
+                    />
+                  </div>
+                  <div className="flex justify-end">
+                    <button
+                      type="submit"
+                      className="flex items-center space-x-2 px-5 py-2.5 rounded-xl font-display font-semibold text-slate-950 bg-emerald-500 hover:bg-emerald-400 transition-colors duration-200 text-xs cursor-pointer"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                      <span>Tambahkan ke Daftar</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              {/* Daftar Program */}
               <div className="space-y-8">
+                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Daftar Program Aktif ({content.programs.length})</span>
                 {content.programs.map((prog, idx) => (
                   <div key={idx} className="p-6 rounded-2xl bg-slate-950/60 border border-slate-900 space-y-4">
-                    <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider block">Program {idx+1}: {prog.title}</span>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider block">Program {idx+1}: {prog.title}</span>
+                      <button
+                        onClick={() => handleDeleteProgram(idx)}
+                        className="text-red-400 hover:text-red-300 text-xs font-semibold flex items-center space-x-1"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                        <span>Hapus</span>
+                      </button>
+                    </div>
                     
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
