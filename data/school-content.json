@@ -1,74 +1,66 @@
 {
   "hero": {
-    "badge": "🌱 Enviro-Entrepreneurship Digital School",
+    "badge": "🌱 Trabas Enviropreneur School",
     "title": "SMP Citra Bangsa Bondowoso",
-    "subtitle": "Mewujudkan generasi berkarakter Robbani, peduli kelestarian lingkungan hidup, dan berdaya saing global melalui jiwa kewirausahaan kreatif.",
-    "videoUrl": "https://www.youtube.com/embed/IXqJI7kQe50?si=HWFJd0W4PKgkAoed"
+    "subtitle": "Menyiapkan generasi unggul yang berjiwa wirausaha, cinta lingkungan, dan berlandaskan nilai-nilai Al-Qur'an. Belajar, Berkreasi, Beraksi, dan Berakhlak Qur'ani!",
+    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
   },
   "stats": [
-    {
-      "label": "Siswa Aktif",
-      "value": 250
-    },
-    {
-      "label": "Guru & Staf",
-      "value": 20
-    },
-    {
-      "label": "Prestasi Siswa",
-      "value": 35
-    },
-    {
-      "label": "Program Eco",
-      "value": 12
-    }
+    { "label": "Siswa Aktif", "value": 250 },
+    { "label": "Guru & Staf", "value": 20 },
+    { "label": "Prestasi Nasional", "value": 15 },
+    { "label": "Target Tahfidz (Juz)", "value": 15 }
   ],
   "visiMisi": {
-    "visi": "Terwujudnya Lembaga Pendidikan Islam yang Unggul untuk Melahirkan Generasi Robbani, Berkarakter Enviropreneur, dan Berdaya Saing Global.",
+    "visi": "Mewujudkan peserta didik yang berbudi, mandiri dan berprestasi.",
     "misi": [
-      "Menyelenggarakan pendidikan holistik berbasis karakter Robbani and akhlak mulia.",
-      "Membudayakan sikap ramah lingkungan hidup dan pelestarian alam (Enviro).",
-      "Melatih keterampilan wirausaha yang kreatif, jujur, mandiri, dan inovatif (Preneur).",
-      "Mengembangkan literasi dan teknologi digital guna mendukung daya saing global."
+      "Mengasah sikap dan perilaku peserta didik yang mencerminkan pribadi beragama dan beretika (Berbudi).",
+      "Mengoptimalkan potensi peserta didik menghadapi tantangan globalisasi sebagai pribadi dan putra bangsa (Mandiri).",
+      "Membimbing peserta didik meningkatkan kemampuan di bidang Al-Qur'an, teknologi, akademik, dan entrepreneurship sesuai dengan bakat dan minatnya (Berprestasi)."
     ]
   },
   "programs": [
     {
-      "title": "Eco-Environment (Enviro)",
-      "desc": "Pembelajaran aktif dalam menjaga ekosistem bumi. Praktek langsung meliputi pertanian hidroponik, pengolahan kompos dari limbah sekolah, serta manajemen daur ulang kreatif.",
-      "badge": "Eco-School"
+      "title": "Integrasi Kurikulum & PBL",
+      "desc": "Pembelajaran akademik menggunakan metode Project-Based Learning (PBL) dan Project-Based Learning (PjBL) yang mengintegrasikan konsep akademik dengan nilai-nilai keislaman dan Al-Qur'an.",
+      "badge": "Kurikulum Merdeka"
     },
     {
-      "title": "Entrepreneurship (Preneur)",
-      "desc": "Membangun jiwa kepemimpinan dan kewirausahaan sejak dini. Melalui kegiatan Market Day, penyusunan business plan sederhana, dan pameran karya kreatif inovasi mandiri.",
-      "badge": "Wirausaha"
+      "title": "Kelestarian Lingkungan Hidup",
+      "desc": "Menumbuhkan tanggung jawab ekologis melalui pemanfaatan lingkungan, pemilahan sampah organik bernilai ekonomi, daur ulang non-organik, serta tanggap masalah lingkungan masyarakat sekitar.",
+      "badge": "Enviropreneur"
     },
     {
-      "title": "Pembelajaran Digital",
-      "desc": "Menghadapi era digital dengan kurikulum teknologi terintegrasi. Siswa dibekali keterampilan dasar pemrograman (coding), literasi digital, dan penggunaan platform CBT modern.",
-      "badge": "Digital Class"
+      "title": "Karakter Global & Tahfidz",
+      "desc": "Membeli siswa keterampilan abad ke-21 (komunikasi, berpikir kritis, kolaborasi) dikombinasikan dengan target hafalan Al-Qur'an personalisasi mulai dari 2 Juz hingga 15 Juz.",
+      "badge": "Tahfidz & Global"
     }
   ],
   "navItems": [
-    {
-      "label": "Beranda",
-      "href": "#beranda"
-    },
-    {
-      "label": "Visi & Misi",
-      "href": "#visi-misi"
-    },
-    {
-      "label": "Kegiatan Live",
-      "href": "#kegiatan"
-    },
-    {
-      "label": "Program Unggulan",
-      "href": "#program"
-    },
-    {
-      "label": "Hubungi Kami",
-      "href": "#kontak"
-    }
+    { "label": "Beranda", "href": "#beranda" },
+    { "label": "Visi & Misi", "href": "#visi-misi" },
+    { "label": "Kegiatan Live", "href": "#kegiatan" },
+    { "label": "Program", "href": "#program" },
+    { "label": "Prestasi", "href": "#prestasi" },
+    { "label": "Hubungi Kami", "href": "#kontak" }
+  ],
+  "prestasi": [
+    { "kategori": "Nasional", "nama": "Juara 1 Tanding Pra Remaja Putra", "pemenang": "Kejuaraan Pencak Silat Jember National (Piala Kemenpora)" },
+    { "kategori": "Nasional", "nama": "Juara 1 Pomsae Junior Putra", "pemenang": "Piala Kemenpora Taekwondo Bhayangkara Presisi II Yogyakarta" },
+    { "kategori": "Nasional", "nama": "Juara 2 Tanding Pra Remaja Putra", "pemenang": "Kejuaraan Pencak Silat Jember National (Piala Kemenpora)" },
+    { "kategori": "Nasional", "nama": "Juara 2 Seni Tunggal Tangan Putri", "pemenang": "Kejuaraan Pencak Silat Jember National (Piala Kemenpora)" },
+    { "kategori": "Nasional", "nama": "Juara 3 Tanding Pra Remaja Putra", "pemenang": "Kejuaraan Pencak Silat IPSI Malang Championship (Piala Kemenpora)" },
+    { "kategori": "Provinsi", "nama": "Juara 1 Kumite 30 kg", "pemenang": "Unmuh Jember Open Karate" },
+    { "kategori": "Provinsi", "nama": "Juara 2 Kumite +50 kg SMP Putra", "pemenang": "Kejuaraan Karate Piala Panglima TNI Surabaya" },
+    { "kategori": "Provinsi", "nama": "Juara 2 Kata Perorangan SMP Putra", "pemenang": "5th Festival Karate Championship Piala Pangdivif" },
+    { "kategori": "Provinsi", "nama": "Juara 3 Kumite +70 kg", "pemenang": "Unmuh Jember Open Karate" },
+    { "kategori": "Provinsi", "nama": "Juara 3 Kata Beregu SMP Putra", "pemenang": "5th Festival Karate Championship Piala Pangdivif" },
+    { "kategori": "Kabupaten", "nama": "Juara 1 Story Telling", "pemenang": "Angel Firdausa - Smasa Ekskul Competition" },
+    { "kategori": "Kabupaten", "nama": "Juara 1 Lomba Tartil Al-Qur'an", "pemenang": "Tsabitah Khairun Nisa - Ekskul Competition" },
+    { "kategori": "Kabupaten", "nama": "Juara 1 Seni Tunggal Putri", "pemenang": "Pencak Silat - Bupati Cup IPSI" },
+    { "kategori": "Kabupaten", "nama": "Juara 1 Tanding Putra", "pemenang": "Pencak Silat - Bupati Cup IPSI" },
+    { "kategori": "Kabupaten", "nama": "Juara 1 Tanding Putri", "pemenang": "Pencak Silat - Bupati Cup IPSI" },
+    { "kategori": "Kabupaten", "nama": "Juara 2 Lomba Bahasa Inggris", "pemenang": "Dies Natalis SMKN 1 Bondowoso" },
+    { "kategori": "Kabupaten", "nama": "Juara 3 Lomba E-Sport MLBB", "pemenang": "Kejuaraan ESI Bondowoso" }
   ]
 }

@@ -73,6 +73,7 @@ export default function Home() {
   const [activeVideo, setActiveVideo] = useState(null); // URL or embed URL
   const [formStatus, setFormStatus] = useState({ submitted: false, message: "" });
   const [heroVersion, setHeroVersion] = useState(0);
+  const [prestasiFilter, setPrestasiFilter] = useState("Semua");
   
   // Stats Animation Counter Trigger
   const [counters, setCounters] = useState({ students: 0, teachers: 0, awards: 0, ecos: 0 });
@@ -502,6 +503,77 @@ export default function Home() {
               </motion.div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Student Achievements Section */}
+      <section id="prestasi" className="py-24 bg-slate-950/60 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-gold/5 rounded-full blur-[140px] pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span className="font-display text-emerald-400 font-bold uppercase tracking-wider text-xs">
+              Prestasi Gemilang
+            </span>
+            <h2 className="font-display font-bold text-3xl sm:text-4xl text-white">
+              Prestasi Siswa TRABAS
+            </h2>
+            <p className="text-slate-400 font-body text-sm max-w-md mx-auto">
+              Dokumentasi raihan medali dan penghargaan luar biasa siswa SMP Citra Bangsa sepanjang tahun 2024.
+            </p>
+            <div className="w-20 h-1 bg-gradient-to-r from-brand-green-light to-brand-gold mx-auto rounded-full" />
+          </div>
+
+          {/* Category Filter tabs */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+            {["Semua", "Nasional", "Provinsi", "Kabupaten"].map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setPrestasiFilter(cat)}
+                className={`px-5 py-2 rounded-full font-display text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
+                  prestasiFilter === cat
+                    ? "bg-emerald-500 text-slate-950 shadow-md"
+                    : "bg-slate-900 hover:bg-slate-800 text-slate-400 border border-slate-800/80"
+                }`}
+              >
+                Tingkat {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* Achievements list/grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {(content.prestasi || [])
+              .filter(p => prestasiFilter === "Semua" || p.kategori === prestasiFilter)
+              .map((p, idx) => (
+                <motion.div
+                  key={idx}
+                  layout
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="glass-panel rounded-2xl p-6 border-slate-800/60 shadow-xl flex flex-col justify-between"
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className={`px-2.5 py-0.5 rounded-full font-display text-[9px] font-bold tracking-wider uppercase text-white ${
+                        p.kategori === "Nasional" ? "bg-red-600" :
+                        p.kategori === "Provinsi" ? "bg-blue-600" : "bg-emerald-600"
+                      }`}>
+                        Tingkat {p.kategori}
+                      </span>
+                      <Award className="w-4 h-4 text-brand-gold" />
+                    </div>
+                    <h3 className="font-display font-bold text-white text-base leading-snug">
+                      {p.nama}
+                    </h3>
+                    <p className="font-body text-xs text-slate-400">
+                      {p.pemenang}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+          </div>
         </div>
       </section>
 
