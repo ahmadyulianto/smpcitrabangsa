@@ -76,9 +76,17 @@ export default function Home() {
   const [heroVersion, setHeroVersion] = useState(0);
   const [prestasiFilter, setPrestasiFilter] = useState("Semua");
   const [activeSocialTab, setActiveSocialTab] = useState("instagram");
+  const [lastWaUrl, setLastWaUrl] = useState("");
   
   // Stats Animation Counter Trigger
   const [counters, setCounters] = useState({ students: 0, teachers: 0, awards: 0, ecos: 0 });
+
+  const contact = content.contact || {
+    address: "Jl. Diponegoro, RT 09/RW 02, Desa Poncogati, Kecamatan Curahdami, Kabupaten Bondowoso, Jawa Timur 68251",
+    whatsapp: "6282330049100",
+    whatsappText: "+62 823-3004-9100",
+    mapsUrl: "https://maps.google.com/?q=SMP+Citra+Bangsa+Bondowoso+Curahdami"
+  };
 
   useEffect(() => {
     // Load CMS data dynamically
@@ -159,11 +167,37 @@ export default function Home() {
   const handlePPDBSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const name = formData.get("studentName");
+    const studentName = formData.get("studentName");
+    const parentName = formData.get("parentName");
+    const parentWhatsapp = formData.get("whatsapp");
+    const originSchool = formData.get("originSchool");
+    const notes = formData.get("notes") || "-";
+
+    // Dynamic school WhatsApp number from admin/database
+    const adminWA = contact.whatsapp || "6282330049100";
+
+    // Format WhatsApp Message template
+    const textMessage = `Halo PPDB SMP Citra Bangsa Bondowoso, saya ingin berkonsultasi mengenai pendaftaran calon siswa baru TP 2027/2028:
+
+- *Nama Calon Siswa*: ${studentName}
+- *Nama Orang Tua / Wali*: ${parentName}
+- *Nomor WhatsApp*: ${parentWhatsapp}
+- *Asal Sekolah*: ${originSchool}
+- *Pertanyaan / Catatan*: ${notes}`;
+
+    // Encode URL
+    const waUrl = `https://api.whatsapp.com/send?phone=${adminWA}&text=${encodeURIComponent(textMessage)}`;
+
+    // Show status overlay
     setFormStatus({
       submitted: true,
-      message: `Terima kasih! Pendaftaran atas nama ${name} berhasil dikirim. Staf administrasi kami akan segera menghubungi Anda melalui WhatsApp.`
+      message: `Formulir konsultasi atas nama ${studentName} telah berhasil diproses! Silakan kirim pesan WhatsApp otomatis yang terbuka untuk menghubungi Admin langsung.`
     });
+
+    setLastWaUrl(waUrl);
+
+    // Automatically open WhatsApp in new tab
+    window.open(waUrl, "_blank", "noopener,noreferrer");
   };
 
   // Filtered feeds
@@ -172,6 +206,8 @@ export default function Home() {
   return (
     <>
       <Navbar />
+
+
 
       {/* Hero Section */}
       <section
@@ -224,7 +260,7 @@ export default function Home() {
               href="#ppdb"
               className="w-full sm:w-auto px-8 py-4 rounded-full font-display font-bold text-slate-950 bg-gradient-to-r from-brand-green-light to-brand-gold hover:from-brand-gold hover:to-brand-green-light transition-all duration-300 shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/20 hover:-translate-y-0.5"
             >
-              Pendaftaran PPDB 2026/2027
+              Pendaftaran PPDB 2027/2028
             </a>
             <button
               id="hero-video-cta"
@@ -234,6 +270,26 @@ export default function Home() {
               <Play className="w-5 h-5 text-brand-gold fill-brand-gold" />
               <span>Tonton Video Profil</span>
             </button>
+          </motion.div>
+
+          {/* Company Profile Link under hero cta buttons */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="pt-2"
+          >
+            <span className="font-body text-xs text-slate-400">
+              Mencari info tertulis?{" "}
+              <a
+                href="https://bit.ly/CompanyProfileTRABAS"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand-gold hover:text-emerald-400 font-semibold underline decoration-brand-gold/40 transition-colors duration-200"
+              >
+                Unduh Company Profile TRABAS (PDF)
+              </a>
+            </span>
           </motion.div>
         </div>
       </section>
@@ -371,19 +427,19 @@ export default function Home() {
           {/* Elfsight Widgets Container */}
           <div className="w-full bg-slate-950/30 border border-slate-900/60 p-4 sm:p-6 rounded-3xl shadow-xl min-h-[400px]">
             {/* Instagram Widget */}
-            <div className={activeSocialTab === "instagram" ? "block" : "hidden"}>
+            {activeSocialTab === "instagram" && (
               <div className="elfsight-app-187feef9-b76b-4fed-86c3-2a6e1f74ae9c" data-elfsight-app-lazy></div>
-            </div>
+            )}
 
             {/* YouTube Widget */}
-            <div className={activeSocialTab === "youtube" ? "block" : "hidden"}>
+            {activeSocialTab === "youtube" && (
               <div className="elfsight-app-13d28b96-fbb0-42b6-8ed9-ade5d727369c" data-elfsight-app-lazy></div>
-            </div>
+            )}
 
             {/* TikTok Widget */}
-            <div className={activeSocialTab === "tiktok" ? "block" : "hidden"}>
+            {activeSocialTab === "tiktok" && (
               <div className="elfsight-app-869619bc-bbda-4b58-a98e-21fb6ef26307" data-elfsight-app-lazy></div>
-            </div>
+            )}
           </div>
         </div>
       </section>
@@ -520,7 +576,7 @@ export default function Home() {
               Penerimaan Peserta Didik Baru
             </span>
             <h2 className="font-display font-bold text-3xl sm:text-4xl text-white">
-              PPDB Online TP 2026 / 2027
+              PPDB Online TP 2027 / 2028
             </h2>
             <p className="text-slate-400 font-body text-sm max-w-md mx-auto">
               Segera daftarkan putra-putri Anda untuk bergabung bersama generasi Enviropreneur selanjutnya. Isi formulir konsultasi cepat di bawah ini.
@@ -541,12 +597,28 @@ export default function Home() {
                 <p className="font-body text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
                   {formStatus.message}
                 </p>
-                <button
-                  onClick={() => setFormStatus({ submitted: false, message: "" })}
-                  className="mt-6 px-6 py-2.5 rounded-full font-display text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-300 hover:bg-slate-800"
-                >
-                  Kirim Formulir Baru
-                </button>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+                  {lastWaUrl && (
+                    <a
+                      href={lastWaUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-6 py-3 rounded-full font-display text-xs font-bold text-slate-950 bg-gradient-to-r from-brand-green-light to-brand-gold hover:from-brand-gold hover:to-brand-green-light transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-emerald-500/10 cursor-pointer border-t border-white/20"
+                    >
+                      <MessageCircle className="w-4 h-4 shrink-0" />
+                      <span>Kirim via WhatsApp Manual</span>
+                    </a>
+                  )}
+                  <button
+                    onClick={() => {
+                      setFormStatus({ submitted: false, message: "" });
+                      setLastWaUrl("");
+                    }}
+                    className="px-6 py-3 rounded-full font-display text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-300 hover:bg-slate-800 transition-colors duration-200 cursor-pointer"
+                  >
+                    Kirim Formulir Baru
+                  </button>
+                </div>
               </motion.div>
             ) : (
               <form onSubmit={handlePPDBSubmit} className="space-y-6">
@@ -666,19 +738,19 @@ export default function Home() {
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                 <span className="text-slate-300">
-                  Jl. Diponegoro, RT 09/RW 02, Desa Poncogati, Kecamatan Curahdami, Kabupaten Bondowoso, Jawa Timur 68251
+                  {contact.address}
                 </span>
               </div>
               <div className="flex items-center space-x-3">
                 <MessageCircle className="w-5 h-5 text-brand-gold shrink-0" />
                 <a
                   id="btn-whatsapp-chat"
-                  href="https://wa.me/6282330049100"
+                  href={`https://wa.me/${contact.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-brand-gold hover:underline font-semibold"
                 >
-                  Hubungi kami via WhatsApp: +62 823-3004-9100
+                  Hubungi kami via WhatsApp: {contact.whatsappText}
                 </a>
               </div>
             </div>
@@ -694,7 +766,7 @@ export default function Home() {
               <div className="space-y-1.5">
                 <h3 className="font-display font-bold text-white text-base">SMP Citra Bangsa Bondowoso</h3>
                 <p className="font-body text-xs text-slate-400 max-w-sm">
-                  Kecamatan Curahdami, Bondowoso, Jawa Timur
+                  {contact.address}
                 </p>
                 <p className="font-body text-[10px] text-slate-500 mt-2">
                   Koordinat Geografis: 7.9189° S, 113.8011° E
@@ -702,7 +774,7 @@ export default function Home() {
               </div>
               <a
                 id="btn-google-maps"
-                href="https://maps.google.com/?q=SMP+Citra+Bangsa+Bondowoso+Curahdami"
+                href={contact.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full font-display text-xs font-semibold text-slate-950 bg-gradient-to-r from-brand-green-light to-brand-gold hover:from-brand-gold hover:to-brand-green-light transition-all duration-300 shadow-md"
@@ -735,30 +807,47 @@ export default function Home() {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="w-full max-w-4xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-slate-800 relative z-10"
+              className="w-full max-w-4xl bg-slate-950 rounded-2xl overflow-hidden shadow-2xl border border-slate-800 relative z-10 flex flex-col"
             >
-              {activeVideo.startsWith("https://assets.mixkit.co") ? (
-                <video
-                  src={activeVideo}
-                  controls
-                  autoPlay
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <iframe
-                  src={activeVideo}
-                  title="Video Player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full border-0"
-                />
-              )}
+              <div className="w-full aspect-video">
+                {activeVideo.startsWith("https://assets.mixkit.co") ? (
+                  <video
+                    src={activeVideo}
+                    controls
+                    autoPlay
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <iframe
+                    src={activeVideo}
+                    title="Video Player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full border-0"
+                  />
+                )}
+              </div>
+              
+              <div className="bg-slate-900/60 p-4 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans">
+                <span className="text-slate-300 text-xs sm:text-sm">
+                  Pelajari selengkapnya tentang visi perjuangan dan program kami melalui profil tertulis:
+                </span>
+                <a
+                  href="https://bit.ly/CompanyProfileTRABAS"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2.5 rounded-xl font-display text-xs font-bold text-slate-950 bg-gradient-to-r from-brand-green-light to-brand-gold hover:from-brand-gold hover:to-brand-green-light transition-all duration-300 flex items-center space-x-1.5 shadow-md shrink-0 border-t border-white/10"
+                >
+                  <BookOpen className="w-4 h-4" />
+                  <span>Buka Company Profile (PDF)</span>
+                </a>
+              </div>
 
               {/* Close button inside modal top right */}
               <button
                 id="btn-close-modal"
                 onClick={() => setActiveVideo(null)}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-950/80 border border-slate-800 text-slate-400 hover:text-white flex items-center justify-center"
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-950/80 border border-slate-800 text-slate-400 hover:text-white flex items-center justify-center z-20"
               >
                 ✕
               </button>

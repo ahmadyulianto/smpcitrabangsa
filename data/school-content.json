@@ -3,7 +3,7 @@
     "badge": "🌱 Trabas Enviropreneur School",
     "title": "SMP Citra Bangsa Bondowoso",
     "subtitle": "Menyiapkan generasi unggul yang berjiwa wirausaha, cinta lingkungan, dan berlandaskan nilai-nilai Al-Qur'an. Belajar, Berkreasi, Beraksi, dan Berakhlak Qur'ani!",
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    "videoUrl": "https://www.youtube.com/embed/IXqJI7kQe50?si=zkg-zxI5ePVV2QD3"
   },
   "stats": [
     {
@@ -27,7 +27,7 @@
     "visi": "Mewujudkan peserta didik yang berbudi, mandiri dan berprestasi.",
     "misi": [
       "Mengasah sikap dan perilaku peserta didik yang mencerminkan pribadi beragama dan beretika (Berbudi).",
-      "Mengoptimalkan potensi peserta didik menghadapi tantangan globalisasi sebagai pribadi dan putra bangsa (Mandiri).",
+      "Mengoptimalkan potensi peserta didik menghadapi tantangan globalisasi sebagai pribadi and putra bangsa (Mandiri).",
       "Membimbing peserta didik meningkatkan kemampuan di bidang Al-Qur'an, teknologi, akademik, dan entrepreneurship sesuai dengan bakat dan minatnya (Berprestasi)."
     ]
   },
@@ -160,5 +160,11 @@
       "nama": "Juara 3 Lomba E-Sport MLBB",
       "pemenang": "Kejuaraan ESI Bondowoso"
     }
-  ]
+  ],
+  "contact": {
+    "address": "Jl. Diponegoro, RT 09/RW 02, Desa Poncogati, Kecamatan Curahdami, Kabupaten Bondowoso, Jawa Timur 68251",
+    "whatsapp": "6285335470631",
+    "whatsappText": "+62 853-3547-0631",
+    "mapsUrl": "https://maps.google.com/?q=SMP+Citra+Bangsa+Bondowoso+Curahdami"
+  }
 }

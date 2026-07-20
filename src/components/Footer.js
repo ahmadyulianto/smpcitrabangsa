@@ -37,14 +37,25 @@ const FALLBACK_NAV_ITEMS = [
 export default function Footer() {
   const [navItems, setNavItems] = useState(FALLBACK_NAV_ITEMS);
   const [logoVersion, setLogoVersion] = useState(0);
+  const [contact, setContact] = useState({
+    address: "Jl. Diponegoro, RT 09/RW 02, Desa Poncogati, Kecamatan Curahdami, Kabupaten Bondowoso, Jawa Timur 68251",
+    whatsapp: "6282330049100",
+    whatsappText: "+62 823-3004-9100",
+    email: "info@smpcitrabangsa.sch.id"
+  });
 
   useEffect(() => {
     const fetchNav = async () => {
       try {
         const res = await fetch("/api/admin/get");
         const result = await res.json();
-        if (result.success && result.content?.navItems) {
-          setNavItems(result.content.navItems);
+        if (result.success) {
+          if (result.content?.navItems) {
+            setNavItems(result.content.navItems);
+          }
+          if (result.content?.contact) {
+            setContact(result.content.contact);
+          }
         }
       } catch (err) {
         console.error("Failed to load dynamic nav links inside footer:", err);
@@ -168,17 +179,15 @@ export default function Footer() {
             <ul className="space-y-3.5 font-body text-sm text-slate-400">
               <li className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                <span>
-                  Jl. Diponegoro, RT 09/RW 02, Desa Poncogati, Kecamatan Curahdami, Kabupaten Bondowoso, Jawa Timur 68251
-                </span>
+                <span>{contact.address}</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-emerald-400 shrink-0" />
-                <span>+62 823-3004-9100</span>
+                <span>{contact.whatsappText}</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-emerald-400 shrink-0" />
-                <span>info@smpcitrabangsa.sch.id</span>
+                <span>{contact.email || "info@smpcitrabangsa.sch.id"}</span>
               </li>
             </ul>
           </div>

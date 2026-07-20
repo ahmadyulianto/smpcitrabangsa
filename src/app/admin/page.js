@@ -5,7 +5,8 @@ import Image from "next/image";
 import { 
   Lock, Save, Plus, Trash2, LogOut, CheckCircle, 
   AlertCircle, FileText, BarChart2, Share2, Award, 
-  Menu, Image as ImageIcon, Upload, Link, Eye
+  Menu, Image as ImageIcon, Upload, Link, Eye,
+  Trophy, Phone
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -33,6 +34,9 @@ export default function AdminDashboard() {
 
   // New Program form state
   const [newProgram, setNewProgram] = useState({ title: "", desc: "", badge: "" });
+
+  // New Prestasi form state
+  const [newPrestasi, setNewPrestasi] = useState({ kategori: "Nasional", nama: "", pemenang: "" });
 
   // New Activity form state
   const [newActivity, setNewActivity] = useState({
@@ -254,6 +258,38 @@ export default function AdminDashboard() {
       showStatus("success", "Program telah dihapus! Klik 'Simpan Perubahan' untuk menerapkan.");
     }
   };
+
+  // Student Achievement Helpers
+  const handleAddPrestasi = (e) => {
+    e.preventDefault();
+    if (!newPrestasi.nama || !newPrestasi.pemenang) return;
+    const currentPrestasi = content.prestasi || [];
+    const updated = [...currentPrestasi, newPrestasi];
+    setContent(prev => ({ ...prev, prestasi: updated }));
+    setNewPrestasi({ kategori: "Nasional", nama: "", pemenang: "" });
+    showStatus("success", `Prestasi "${newPrestasi.nama}" berhasil ditambahkan! Klik "Simpan Perubahan" untuk menyimpan secara permanen.`);
+  };
+
+  const handleDeletePrestasi = (idx) => {
+    if (confirm("Apakah Anda yakin ingin menghapus prestasi ini?")) {
+      const currentPrestasi = content.prestasi || [];
+      const updated = currentPrestasi.filter((_, i) => i !== idx);
+      setContent(prev => ({ ...prev, prestasi: updated }));
+      showStatus("success", "Prestasi telah dihapus! Klik 'Simpan Perubahan' untuk menerapkan.");
+    }
+  };
+
+  // Contact Field Helpers
+  const updateContactField = (field, val) => {
+    setContent(prev => ({
+      ...prev,
+      contact: {
+        ...prev.contact,
+        [field]: val
+      }
+    }));
+  };
+
 
   // Dynamic Navigation Link helpers
   const handleAddNavItem = (e) => {
@@ -481,6 +517,24 @@ export default function AdminDashboard() {
             >
               <Share2 className="w-4 h-4 shrink-0" />
               <span>Kegiatan Sosmed</span>
+            </button>
+            <button
+              onClick={() => setActiveTab("prestasi")}
+              className={`w-full flex items-center space-x-2.5 px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 ${
+                activeTab === "prestasi" ? "bg-emerald-500 text-slate-950 shadow-md" : "text-slate-400 hover:bg-slate-900/50 hover:text-white"
+              }`}
+            >
+              <Trophy className="w-4 h-4 shrink-0" />
+              <span>Prestasi Siswa</span>
+            </button>
+            <button
+              onClick={() => setActiveTab("contact")}
+              className={`w-full flex items-center space-x-2.5 px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 ${
+                activeTab === "contact" ? "bg-emerald-500 text-slate-950 shadow-md" : "text-slate-400 hover:bg-slate-900/50 hover:text-white"
+              }`}
+            >
+              <Phone className="w-4 h-4 shrink-0" />
+              <span>Hubungi Kami</span>
             </button>
           </div>
 
@@ -1169,6 +1223,195 @@ export default function AdminDashboard() {
                 </div>
               </div>
 
+            </div>
+          )}
+
+          {/* TAB 7: PRESTASI SISWA */}
+          {activeTab === "prestasi" && (
+            <div className="space-y-6">
+              {/* Form Tambah Prestasi */}
+              <div className="glass-panel rounded-3xl p-6 sm:p-8 border-slate-900 space-y-6 shadow-lg">
+                <div className="border-b border-slate-900 pb-4">
+                  <h2 className="font-display font-bold text-lg text-white">Tambah Prestasi Baru</h2>
+                  <p className="text-slate-400 text-xs">Tambahkan data pencapaian kejuaraan siswa yang akan ditampilkan di beranda.</p>
+                </div>
+
+                <form onSubmit={handleAddPrestasi} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Tingkat Prestasi</label>
+                      <select
+                        value={newPrestasi.kategori}
+                        onChange={(e) => setNewPrestasi(prev => ({ ...prev, kategori: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
+                      >
+                        <option value="Nasional">Nasional</option>
+                        <option value="Provinsi">Provinsi</option>
+                        <option value="Kabupaten">Kabupaten</option>
+                      </select>
+                    </div>
+
+                    <div className="space-y-2 sm:col-span-2">
+                      <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Nama Prestasi / Juara</label>
+                      <input
+                        type="text"
+                        placeholder="Contoh: Juara 1 Seni Tunggal Putri Pencak Silat"
+                        value={newPrestasi.nama}
+                        onChange={(e) => setNewPrestasi(prev => ({ ...prev, nama: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm font-semibold"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Nama Pemenang / Penyelenggara / Detail Event</label>
+                    <input
+                      type="text"
+                      placeholder="Contoh: Angel Firdausa - Bupati Cup IPSI 2024"
+                      value={newPrestasi.pemenang}
+                      onChange={(e) => setNewPrestasi(prev => ({ ...prev, pemenang: e.target.value }))}
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
+                      required
+                    />
+                  </div>
+
+                  <div className="flex justify-end">
+                    <button
+                      type="submit"
+                      className="flex items-center space-x-2 px-6 py-2.5 rounded-xl font-display font-semibold text-slate-950 bg-emerald-500 hover:bg-emerald-400 transition-colors duration-200 text-xs cursor-pointer"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                      <span>Tambahkan Prestasi</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              {/* Daftar Prestasi Yang Ada */}
+              <div className="glass-panel rounded-3xl p-6 sm:p-8 border-slate-900 space-y-6 shadow-lg">
+                <div>
+                  <h2 className="font-display font-bold text-base text-white">Daftar Prestasi Saat Ini ({(content.prestasi || []).length})</h2>
+                  <p className="text-slate-400 text-xs">Daftar medali dan piala siswa. Hapus yang tidak diinginkan lalu simpan perubahan.</p>
+                </div>
+
+                <div className="space-y-3.5 max-h-[500px] overflow-y-auto pr-2">
+                  {(content.prestasi || []).map((p, idx) => (
+                    <div key={idx} className="flex items-center justify-between p-3.5 rounded-xl bg-slate-950/60 border border-slate-900 gap-4">
+                      <div className="min-w-0">
+                        <span className={`px-2 py-0.5 text-[9px] font-bold rounded-full text-white tracking-wide uppercase mr-1.5 ${
+                          p.kategori === "Nasional" ? "bg-red-600" :
+                          p.kategori === "Provinsi" ? "bg-blue-600" : "bg-emerald-600"
+                        }`}>
+                          {p.kategori}
+                        </span>
+                        <h4 className="font-display font-bold text-sm text-slate-100 mt-1.5">{p.nama}</h4>
+                        <p className="text-xs text-slate-400 font-body mt-0.5">{p.pemenang}</p>
+                      </div>
+
+                      <button
+                        onClick={() => handleDeletePrestasi(idx)}
+                        className="p-2.5 rounded-xl bg-slate-900 border border-slate-800/80 hover:bg-red-950/40 hover:border-red-900/60 text-slate-400 hover:text-red-500 transition-all duration-200 cursor-pointer"
+                        aria-label="Delete achievement"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Save trigger */}
+                <div className="pt-4 border-t border-slate-900/60 flex justify-end">
+                  <button
+                    onClick={saveContent}
+                    disabled={saving}
+                    className="flex items-center space-x-2 px-6 py-3 rounded-xl font-display font-bold text-slate-950 bg-emerald-500 hover:bg-emerald-400 transition-colors duration-200 text-sm cursor-pointer disabled:opacity-50"
+                  >
+                    <Save className="w-4 h-4" />
+                    <span>{saving ? "Menyimpan..." : "Simpan Perubahan"}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 8: HUBUNGI KAMI */}
+          {activeTab === "contact" && (
+            <div className="glass-panel rounded-3xl p-6 sm:p-8 border-slate-900 space-y-8 shadow-lg">
+              <div className="border-b border-slate-900 pb-4">
+                <h2 className="font-display font-bold text-lg text-white">Hubungi Kami & Informasi Kontak</h2>
+                <p className="text-slate-400 text-xs">Ubah alamat sekolah, nomor WhatsApp chat, dan link koordinat peta lokasi.</p>
+              </div>
+
+              <div className="space-y-6">
+                <div className="space-y-2">
+                  <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Alamat Lengkap Sekolah</label>
+                  <textarea
+                    value={content.contact?.address || ""}
+                    onChange={(e) => updateContactField("address", e.target.value)}
+                    rows="3"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm resize-none"
+                    placeholder="Masukkan alamat lengkap sekolah..."
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">No WhatsApp (Format Internasional)</label>
+                    <input
+                      type="text"
+                      value={content.contact?.whatsapp || ""}
+                      onChange={(e) => updateContactField("whatsapp", e.target.value)}
+                      placeholder="Contoh: 62853335470631 (tanpa + atau 0 depan)"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm font-semibold"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Teks Tampilan WhatsApp</label>
+                    <input
+                      type="text"
+                      value={content.contact?.whatsappText || ""}
+                      onChange={(e) => updateContactField("whatsappText", e.target.value)}
+                      placeholder="Contoh: +62 853-3354-70631"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Link Petunjuk Arah Google Maps</label>
+                  <input
+                    type="url"
+                    value={content.contact?.mapsUrl || ""}
+                    onChange={(e) => updateContactField("mapsUrl", e.target.value)}
+                    placeholder="Masukkan link share google maps sekolah..."
+                    className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Email Resmi Sekolah</label>
+                  <input
+                    type="email"
+                    value={content.contact?.email || ""}
+                    onChange={(e) => updateContactField("email", e.target.value)}
+                    placeholder="Contoh: info@smpcitrabangsa.sch.id"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
+                  />
+                </div>
+              </div>
+
+              {/* Save trigger */}
+              <div className="pt-4 border-t border-slate-900/60 flex justify-end">
+                <button
+                  onClick={saveContent}
+                  disabled={saving}
+                  className="flex items-center space-x-2 px-6 py-3 rounded-xl font-display font-bold text-slate-950 bg-emerald-500 hover:bg-emerald-400 transition-colors duration-200 text-sm cursor-pointer disabled:opacity-50"
+                >
+                  <Save className="w-4 h-4" />
+                  <span>{saving ? "Menyimpan..." : "Simpan Perubahan"}</span>
+                </button>
+              </div>
             </div>
           )}
 
