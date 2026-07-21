@@ -489,9 +489,7 @@ export default function Home() {
             );
           })}
         </div>
-        <div className="mt-12 text-center text-xs text-slate-500 font-body">
-          * Didasarkan pada kurikulum nasional terintegrasi nilai-nilai keislaman dan lingkungan hidup.
-        </div>
+
       </section>
 
       {/* Student Achievements Section */}

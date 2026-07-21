@@ -46,6 +46,11 @@
       "title": "Karakter Global & Tahfidz",
       "desc": "Membeli siswa keterampilan abad ke-21 (komunikasi, berpikir kritis, kolaborasi) dikombinasikan dengan target hafalan Al-Qur'an personalisasi mulai dari 2 Juz hingga 15 Juz.",
       "badge": "Tahfidz & Global"
+    },
+    {
+      "title": "Integrasi Kurikulum Nasional dan Nilai Islam",
+      "desc": "Materi akademik disampaikan menggunakan metode PBL dan PjBL.\nPerspektif Islam dalam Materi: Setiap materi disusun dengan mengaitkan konsep-konsep akademik dengan nilai-nilai Islam.",
+      "badge": "Integrasi Nilai Islam"
     }
   ],
   "navItems": [
