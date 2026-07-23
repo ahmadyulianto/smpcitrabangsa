@@ -27,11 +27,10 @@ const FacebookIcon = (props) => (
 );
 
 const FALLBACK_NAV_ITEMS = [
-  { label: "Beranda", href: "#beranda" },
-  { label: "Visi & Misi", href: "#visi-misi" },
-  { label: "Kegiatan Live", href: "#kegiatan" },
-  { label: "Program Unggulan", href: "#program" },
-  { label: "Hubungi Kami", href: "#kontak" }
+  { label: "Profil Sekolah", href: "#visi-misi" },
+  { label: "Program & Fasilitas", href: "#program" },
+  { label: "Berita & Prestasi", href: "#prestasi" },
+  { label: "PPDB / Pendaftaran", href: "#ppdb" }
 ];
 
 export default function Footer() {
@@ -83,7 +82,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
           
           {/* Brand Info */}
-          <div className="md:col-span-5 space-y-6">
+          <div className="md:col-span-4 space-y-6">
             <div className="flex items-center space-x-3">
               <div className="relative w-14 h-14 rounded-full overflow-hidden border border-emerald-500/20">
                 <img
@@ -112,7 +111,7 @@ export default function Footer() {
                 href="https://www.instagram.com/smpcitrabangsa.bws/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-pink-500 hover:border-pink-500/30 transition-colors duration-300"
+                className="w-11 h-11 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-pink-500 hover:border-pink-500/30 transition-colors duration-300"
                 aria-label="Instagram Profile"
               >
                 <InstagramIcon className="w-5 h-5" />
@@ -122,7 +121,7 @@ export default function Footer() {
                 href="https://www.youtube.com/@trabasbondowoso"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-red-500 hover:border-red-500/30 transition-colors duration-300"
+                className="w-11 h-11 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-red-500 hover:border-red-500/30 transition-colors duration-300"
                 aria-label="YouTube Channel"
               >
                 <YoutubeIcon className="w-5 h-5" />
@@ -132,7 +131,7 @@ export default function Footer() {
                 href="https://www.facebook.com/smpcitrabangsa.bws"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-blue-500 hover:border-blue-500/30 transition-colors duration-300"
+                className="w-11 h-11 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-blue-500 hover:border-blue-500/30 transition-colors duration-300"
                 aria-label="Facebook Page"
               >
                 <FacebookIcon className="w-5 h-5" />
@@ -142,7 +141,7 @@ export default function Footer() {
                 href="https://www.tiktok.com/@smpcitrabangsa.bws"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-white/30 transition-colors duration-300 font-bold"
+                className="w-11 h-11 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-white/30 transition-colors duration-300 font-bold"
                 aria-label="TikTok Profile"
               >
                 <span className="text-sm">🎵</span>
@@ -151,9 +150,9 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="md:col-span-3 space-y-4">
+          <div className="md:col-span-2 space-y-4">
             <h3 className="font-display font-semibold text-white tracking-wide text-sm uppercase">
-              Navigasi Cepat
+              Navigasi
             </h3>
             <ul className="space-y-2.5 font-body text-sm">
               {navItems.map((item) => (
@@ -163,16 +162,40 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Portal Internal */}
+          <div className="md:col-span-3 space-y-4">
+            <h3 className="font-display font-semibold text-white tracking-wide text-sm uppercase">
+              Portal Internal
+            </h3>
+            <ul className="space-y-2.5 font-body text-sm text-slate-400">
               <li>
-                <a href="#ppdb" className="text-slate-400 hover:text-brand-green-light transition-colors duration-200">
-                  Pendaftaran PPDB
+                <a href="#" className="hover:text-brand-green-light transition-colors duration-200">
+                  E-Learning / LMS
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-brand-green-light transition-colors duration-200">
+                  Sistem Informasi (SIAKAD)
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-brand-green-light transition-colors duration-200">
+                  Kalender Akademik
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-brand-green-light transition-colors duration-200">
+                  Perpustakaan Digital
                 </a>
               </li>
             </ul>
           </div>
 
           {/* Contact Details */}
-          <div className="md:col-span-4 space-y-4">
+          <div className="md:col-span-3 space-y-4">
             <h3 className="font-display font-semibold text-white tracking-wide text-sm uppercase">
               Hubungi Sekolah
             </h3>

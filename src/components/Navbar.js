@@ -5,11 +5,10 @@ import Image from "next/image";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const FALLBACK_NAV_ITEMS = [
-  { label: "Beranda", href: "#beranda" },
-  { label: "Visi & Misi", href: "#visi-misi" },
-  { label: "Kegiatan Live", href: "#kegiatan" },
-  { label: "Program Unggulan", href: "#program" },
-  { label: "Hubungi Kami", href: "#kontak" }
+  { label: "Profil Sekolah", href: "#visi-misi" },
+  { label: "Program & Fasilitas", href: "#program" },
+  { label: "Berita & Prestasi", href: "#prestasi" },
+  { label: "PPDB / Pendaftaran", href: "#ppdb" }
 ];
 
 export default function Navbar() {

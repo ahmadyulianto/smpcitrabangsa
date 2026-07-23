@@ -55,28 +55,20 @@
   ],
   "navItems": [
     {
-      "label": "Beranda",
-      "href": "#beranda"
-    },
-    {
-      "label": "Visi & Misi",
+      "label": "Profil Sekolah",
       "href": "#visi-misi"
     },
     {
-      "label": "Kegiatan Live",
-      "href": "#kegiatan"
-    },
-    {
-      "label": "Program",
+      "label": "Program & Fasilitas",
       "href": "#program"
     },
     {
-      "label": "Prestasi",
+      "label": "Berita & Prestasi",
       "href": "#prestasi"
     },
     {
-      "label": "Hubungi Kami",
-      "href": "#kontak"
+      "label": "PPDB / Pendaftaran",
+      "href": "#ppdb"
     }
   ],
   "prestasi": [

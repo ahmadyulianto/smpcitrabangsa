@@ -66,6 +66,73 @@ const PROGRAM_COLORS = [
   { bg: "from-blue-500/20 to-indigo-500/5", border: "border-blue-500/30" }
 ];
 
+const FACILITIES = [
+  {
+    title: "AI & Computer Lab",
+    desc: "Laboratorium komputer modern yang dilengkapi modul pembelajaran pemrograman (coding) dan pengenalan Artificial Intelligence.",
+    image: "/school_computer_lab.jpg",
+    badge: "Teknologi"
+  },
+  {
+    title: "Eco Green Library",
+    desc: "Perpustakaan sejuk terintegrasi area terbuka hijau (outdoor) untuk menumbuhkan minat membaca dalam suasana asri Curahdami.",
+    image: "/school_eco_library.jpg",
+    badge: "Literasi"
+  },
+  {
+    title: "Multimedia Smart Class",
+    desc: "Ruang kelas modern ber-AC dilengkapi proyektor interaktif, smartboard, dan layout meja kolaboratif untuk Project-Based Learning.",
+    image: "/school_smart_classroom.jpg",
+    badge: "Akademik"
+  }
+];
+
+const EXTRACURRICULARS = [
+  {
+    title: "Coding & Robotics Club",
+    desc: "Mengasah kemampuan Computational Thinking melalui pembuatan program, game, dan perakitan robot pintar berbasis Arduino.",
+    icon: Globe,
+    color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20"
+  },
+  {
+    title: "Sains & Enviro Club",
+    desc: "Eksplorasi penelitian sains terapan, budidaya hidroponik sekolah, dan pembuatan produk daur ulang kreatif bernilai ekonomi.",
+    icon: Leaf,
+    color: "text-green-400 bg-green-500/10 border-green-500/20"
+  },
+  {
+    title: "Public Speaking & English Club",
+    desc: "Melatih rasa percaya diri siswa untuk berbicara di depan umum, debat bahasa Inggris, dan seni bercerita (storytelling).",
+    icon: Users,
+    color: "text-blue-400 bg-blue-500/10 border-blue-500/20"
+  },
+  {
+    title: "Tahfidz Center & Hadrah",
+    desc: "Pusat pembinaan hafalan Al-Qur'an intensif diiringi kegiatan seni musik islami hadrah kearifan lokal.",
+    icon: BookOpen,
+    color: "text-brand-gold bg-brand-gold/10 border-brand-gold/20"
+  }
+];
+
+const FAQ_ITEMS = [
+  {
+    q: "Apa saja syarat berkas pendaftaran PPDB?",
+    a: "Persyaratan berkas meliputi: Fotokopi Akta Kelahiran, Fotokopi Kartu Keluarga (KK), Fotokopi Rapor kelas 4-6 SD/MI, Pasfoto terbaru ukuran 3x4 (3 lembar), dan Surat Keterangan Lulus (SKL) jika sudah diterbitkan."
+  },
+  {
+    q: "Bagaimana alur seleksi penerimaan murid baru?",
+    a: "Alur pendaftaran terdiri dari 3 tahap: (1) Mengisi formulir konsultasi cepat secara online, (2) Mengikuti wawancara potensi siswa & observasi tahfidz (untuk penempatan kelas), (3) Pengumuman hasil dan verifikasi dokumen fisik di sekolah."
+  },
+  {
+    q: "Apakah tersedia program beasiswa?",
+    a: "Tentu saja! Kami memiliki program unggulan beasiswa: (1) Beasiswa Tahfidz Al-Qur'an (potongan biaya SPP sesuai hafalan juz), (2) Beasiswa Prestasi Akademik/Non-Akademik (bukti sertifikat juara minimal tingkat kabupaten)."
+  },
+  {
+    q: "Bagaimana cara melakukan konfirmasi pembayaran?",
+    a: "Setelah dinyatakan diterima, Panitia PPDB akan mengirimkan rincian administrasi. Konfirmasi dan bukti transfer dana pendaftaran dapat langsung dikirim via WhatsApp ke nomor CS resmi kami."
+  }
+];
+
 export default function Home() {
   const [filter, setFilter] = useState("all");
   const [content, setContent] = useState(DEFAULT_CONTENT);
@@ -77,6 +144,8 @@ export default function Home() {
   const [prestasiFilter, setPrestasiFilter] = useState("Semua");
   const [activeSocialTab, setActiveSocialTab] = useState("instagram");
   const [lastWaUrl, setLastWaUrl] = useState("");
+  const [activeGalleryTab, setActiveGalleryTab] = useState("facilities");
+  const [openFaqIdx, setOpenFaqIdx] = useState(null);
   
   // Stats Animation Counter Trigger
   const [counters, setCounters] = useState({ students: 0, teachers: 0, awards: 0, ecos: 0 });
@@ -258,9 +327,9 @@ export default function Home() {
             <a
               id="hero-ppdb-cta"
               href="#ppdb"
-              className="w-full sm:w-auto px-8 py-4 rounded-full font-display font-bold text-slate-950 bg-gradient-to-r from-brand-green-light to-brand-gold hover:from-brand-gold hover:to-brand-green-light transition-all duration-300 shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/20 hover:-translate-y-0.5"
+              className="w-full sm:w-auto px-8 py-4 rounded-full font-display font-bold text-slate-950 bg-gradient-to-r from-brand-green-light to-brand-gold hover:from-brand-gold hover:to-brand-green-light transition-all duration-300 shadow-xl shadow-emerald-500/20 hover:shadow-emerald-500/50 hover:scale-[1.03] active:scale-95 border-t border-white/20 flex items-center justify-center space-x-2 cursor-pointer"
             >
-              Pendaftaran PPDB 2027/2028
+              <span>Pendaftaran PPDB 2027/2028</span>
             </a>
             <button
               id="hero-video-cta"
@@ -492,6 +561,128 @@ export default function Home() {
 
       </section>
 
+      {/* Facilities & Extracurriculars Gallery Section */}
+      <section id="fasilitas" className="py-24 bg-slate-950/20 border-t border-slate-900/60 relative overflow-hidden">
+        <div className="absolute top-1/2 left-10 w-82 h-82 rounded-full bg-emerald-500/5 blur-[120px] pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between border-b border-slate-900 pb-8 gap-6">
+            <div className="space-y-4 text-left">
+              <span className="font-display text-emerald-400 font-bold uppercase tracking-wider text-xs">
+                Keunggulan & Keseruan Siswa
+              </span>
+              <h2 className="font-display font-bold text-3xl sm:text-4xl text-white">
+                Fasilitas & Ekstrakurikuler
+              </h2>
+              <p className="text-slate-400 font-body text-sm max-w-md">
+                Menyediakan lingkungan belajar eksklusif berstandar tinggi serta wadah pengembangan minat bakat non-akademik siswa.
+              </p>
+            </div>
+
+            {/* Tab switch */}
+            <div className="flex items-center bg-slate-950/80 p-1.5 rounded-full border border-slate-800/80 shadow-md">
+              <button
+                onClick={() => setActiveGalleryTab("facilities")}
+                className={`px-5 py-2.5 rounded-full font-display text-xs font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                  activeGalleryTab === "facilities"
+                    ? "bg-emerald-500 text-slate-950 shadow-md font-bold"
+                    : "text-slate-400 hover:text-slate-200"
+                }`}
+              >
+                🏫 Fasilitas
+              </button>
+              <button
+                onClick={() => setActiveGalleryTab("extracurriculars")}
+                className={`px-5 py-2.5 rounded-full font-display text-xs font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                  activeGalleryTab === "extracurriculars"
+                    ? "bg-emerald-500 text-slate-950 shadow-md font-bold"
+                    : "text-slate-400 hover:text-slate-200"
+                }`}
+              >
+                ✨ Ekskul
+              </button>
+            </div>
+          </div>
+
+          {/* Tab Content */}
+          <AnimatePresence mode="wait">
+            {activeGalleryTab === "facilities" ? (
+              <motion.div
+                key="facilities"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.4 }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              >
+                {FACILITIES.map((fac, idx) => (
+                  <motion.div
+                    key={fac.title}
+                    whileHover={{ y: -6 }}
+                    className="glass-panel rounded-3xl overflow-hidden border-slate-900 flex flex-col group shadow-xl"
+                  >
+                    <div className="relative aspect-video w-full overflow-hidden bg-slate-950">
+                      <img
+                        src={fac.image}
+                        alt={fac.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                      />
+                      <span className="absolute top-4 left-4 px-2.5 py-0.5 rounded-full bg-slate-950/85 text-[10px] font-bold text-emerald-400 border border-emerald-500/20 backdrop-blur-md uppercase tracking-wider">
+                        {fac.badge}
+                      </span>
+                    </div>
+                    <div className="p-6 space-y-3 flex-grow flex flex-col justify-between">
+                      <div className="space-y-2">
+                        <h3 className="font-display font-bold text-white text-base">
+                          {fac.title}
+                        </h3>
+                        <p className="font-body text-xs text-slate-400 leading-relaxed">
+                          {fac.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="extracurriculars"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.4 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+              >
+                {EXTRACURRICULARS.map((ekskul, idx) => {
+                  const Icon = ekskul.icon;
+                  return (
+                    <motion.div
+                      key={ekskul.title}
+                      whileHover={{ y: -5 }}
+                      className="glass-panel rounded-2xl p-6 border-slate-900 flex flex-col justify-between space-y-6 shadow-xl glow-green/10"
+                    >
+                      <div className="space-y-4">
+                        <div className={`w-12 h-12 rounded-xl border flex items-center justify-center ${ekskul.color}`}>
+                          <Icon className="w-5 h-5" />
+                        </div>
+                        <h3 className="font-display font-bold text-slate-100 text-sm">
+                          {ekskul.title}
+                        </h3>
+                        <p className="font-body text-xs text-slate-400 leading-relaxed">
+                          {ekskul.desc}
+                        </p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </section>
+
       {/* Student Achievements Section */}
       <section id="prestasi" className="py-24 bg-slate-950/60 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-gold/5 rounded-full blur-[140px] pointer-events-none" />
@@ -709,6 +900,56 @@ export default function Home() {
               </form>
             )}
           </div>
+
+          {/* FAQ PPDB Section */}
+          <div className="mt-20 max-w-3xl mx-auto space-y-8">
+            <div className="text-center space-y-3">
+              <span className="font-display text-brand-gold font-bold uppercase tracking-wider text-xs">
+                Ada Pertanyaan?
+              </span>
+              <h3 className="font-display font-bold text-2xl text-white">
+                Tanya Jawab PPDB & Pendaftaran
+              </h3>
+              <p className="text-slate-400 font-body text-xs max-w-sm mx-auto">
+                Berikut informasi penting seputar proses administrasi, seleksi, dan beasiswa sekolah.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {FAQ_ITEMS.map((faq, idx) => (
+                <div 
+                  key={idx}
+                  className="glass-panel border-slate-900 rounded-2xl overflow-hidden shadow-md transition-all duration-300"
+                >
+                  <button
+                    onClick={() => setOpenFaqIdx(openFaqIdx === idx ? null : idx)}
+                    className="w-full flex items-center justify-between p-5 text-left font-display font-bold text-sm sm:text-base text-slate-100 hover:text-white hover:bg-slate-900/30 transition-all duration-200 cursor-pointer"
+                  >
+                    <span>{faq.q}</span>
+                    <span className="text-emerald-400 font-extrabold text-lg shrink-0 ml-4">
+                      {openFaqIdx === idx ? "−" : "+"}
+                    </span>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {openFaqIdx === idx && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="px-5 pb-5 pt-1 font-body text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-slate-900/30">
+                          {faq.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -853,6 +1094,27 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Floating WhatsApp Button */}
+      <a
+        id="btn-whatsapp-floating"
+        href={`https://wa.me/${contact.whatsapp || "6282330049100"}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center justify-center shadow-2xl hover:shadow-emerald-500/30 transition-all duration-300 hover:scale-110 group border border-emerald-400/20 cursor-pointer"
+        aria-label="Chat on WhatsApp"
+      >
+        {/* Pulsing indicator */}
+        <span className="absolute inset-0 rounded-full bg-emerald-500/30 animate-ping group-hover:animate-none pointer-events-none" />
+        
+        {/* WhatsApp Icon */}
+        <MessageCircle className="w-7 h-7 relative z-10 fill-slate-950" />
+        
+        {/* Tooltip */}
+        <span className="absolute right-16 scale-0 group-hover:scale-100 bg-slate-950 text-white text-xs font-semibold px-3 py-2 rounded-xl whitespace-nowrap border border-slate-800 shadow-xl transition-all duration-200 origin-right">
+          Hubungi CS PPDB
+        </span>
+      </a>
 
       <Footer />
     </>

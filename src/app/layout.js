@@ -16,19 +16,19 @@ const inter = Inter({
 export const metadata = {
   metadataBase: new URL("https://smpcitrabangsa.sch.id"),
   title: "SMP Citra Bangsa Bondowoso | Trabas Enviropreneurschool",
-  description: "Official website of SMP Citra Bangsa Bondowoso. A premium environmental and entrepreneurship based digital school in Curahdami, Bondowoso.",
+  description: "Website Resmi SMP Citra Bangsa Bondowoso. Sekolah digital berbasis lingkungan hidup dan kewirausahaan (Enviropreneur) terakreditasi di Curahdami, Bondowoso.",
   keywords: "smp citra bangsa, smp citra bangsa bondowoso, trabas bondowoso, enviropreneurschool, sekolah terbaik bondowoso, ppdb smp citra bangsa",
   openGraph: {
     title: "SMP Citra Bangsa Bondowoso | Trabas Enviropreneurschool",
-    description: "A premium environmental and entrepreneurship based digital school in Curahdami, Bondowoso.",
+    description: "Sekolah digital berbasis lingkungan hidup dan kewirausahaan (Enviropreneur) terakreditasi di Curahdami, Bondowoso.",
     url: "https://smpcitrabangsa.sch.id",
     siteName: "SMP Citra Bangsa Bondowoso",
     images: [
       {
-        url: "/logo.jpg",
-        width: 800,
-        height: 800,
-        alt: "SMP Citra Bangsa Bondowoso Logo",
+        url: "/og_banner.jpg",
+        width: 1200,
+        height: 630,
+        alt: "SMP Citra Bangsa Bondowoso Campus Banner",
       },
     ],
     locale: "id_ID",
