@@ -51,7 +51,11 @@ const DEFAULT_CONTENT = {
       desc: "Menghadapi era digital dengan kurikulum teknologi terintegrasi. Siswa dibekali keterampilan dasar pemrograman (coding), literasi digital, dan penggunaan platform CBT modern.",
       badge: "Digital Class"
     }
-  ]
+  ],
+  facilities: [],
+  extracurriculars: [],
+  faq: [],
+  portals: []
 };
 
 // Icons mapping for stats
@@ -66,72 +70,13 @@ const PROGRAM_COLORS = [
   { bg: "from-blue-500/20 to-indigo-500/5", border: "border-blue-500/30" }
 ];
 
-const FACILITIES = [
-  {
-    title: "AI & Computer Lab",
-    desc: "Laboratorium komputer modern yang dilengkapi modul pembelajaran pemrograman (coding) dan pengenalan Artificial Intelligence.",
-    image: "/school_computer_lab.jpg",
-    badge: "Teknologi"
-  },
-  {
-    title: "Eco Green Library",
-    desc: "Perpustakaan sejuk terintegrasi area terbuka hijau (outdoor) untuk menumbuhkan minat membaca dalam suasana asri Curahdami.",
-    image: "/school_eco_library.jpg",
-    badge: "Literasi"
-  },
-  {
-    title: "Multimedia Smart Class",
-    desc: "Ruang kelas modern ber-AC dilengkapi proyektor interaktif, smartboard, dan layout meja kolaboratif untuk Project-Based Learning.",
-    image: "/school_smart_classroom.jpg",
-    badge: "Akademik"
-  }
-];
-
-const EXTRACURRICULARS = [
-  {
-    title: "Coding & Robotics Club",
-    desc: "Mengasah kemampuan Computational Thinking melalui pembuatan program, game, dan perakitan robot pintar berbasis Arduino.",
-    icon: Globe,
-    color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20"
-  },
-  {
-    title: "Sains & Enviro Club",
-    desc: "Eksplorasi penelitian sains terapan, budidaya hidroponik sekolah, dan pembuatan produk daur ulang kreatif bernilai ekonomi.",
-    icon: Leaf,
-    color: "text-green-400 bg-green-500/10 border-green-500/20"
-  },
-  {
-    title: "Public Speaking & English Club",
-    desc: "Melatih rasa percaya diri siswa untuk berbicara di depan umum, debat bahasa Inggris, dan seni bercerita (storytelling).",
-    icon: Users,
-    color: "text-blue-400 bg-blue-500/10 border-blue-500/20"
-  },
-  {
-    title: "Tahfidz Center & Hadrah",
-    desc: "Pusat pembinaan hafalan Al-Qur'an intensif diiringi kegiatan seni musik islami hadrah kearifan lokal.",
-    icon: BookOpen,
-    color: "text-brand-gold bg-brand-gold/10 border-brand-gold/20"
-  }
-];
-
-const FAQ_ITEMS = [
-  {
-    q: "Apa saja syarat berkas pendaftaran PPDB?",
-    a: "Persyaratan berkas meliputi: Fotokopi Akta Kelahiran, Fotokopi Kartu Keluarga (KK), Fotokopi Rapor kelas 4-6 SD/MI, Pasfoto terbaru ukuran 3x4 (3 lembar), dan Surat Keterangan Lulus (SKL) jika sudah diterbitkan."
-  },
-  {
-    q: "Bagaimana alur seleksi penerimaan murid baru?",
-    a: "Alur pendaftaran terdiri dari 3 tahap: (1) Mengisi formulir konsultasi cepat secara online, (2) Mengikuti wawancara potensi siswa & observasi tahfidz (untuk penempatan kelas), (3) Pengumuman hasil dan verifikasi dokumen fisik di sekolah."
-  },
-  {
-    q: "Apakah tersedia program beasiswa?",
-    a: "Tentu saja! Kami memiliki program unggulan beasiswa: (1) Beasiswa Tahfidz Al-Qur'an (potongan biaya SPP sesuai hafalan juz), (2) Beasiswa Prestasi Akademik/Non-Akademik (bukti sertifikat juara minimal tingkat kabupaten)."
-  },
-  {
-    q: "Bagaimana cara melakukan konfirmasi pembayaran?",
-    a: "Setelah dinyatakan diterima, Panitia PPDB akan mengirimkan rincian administrasi. Konfirmasi dan bukti transfer dana pendaftaran dapat langsung dikirim via WhatsApp ke nomor CS resmi kami."
-  }
-];
+const ICON_MAP = {
+  Globe: Globe,
+  Leaf: Leaf,
+  Users: Users,
+  BookOpen: BookOpen,
+  Award: Award
+};
 
 export default function Home() {
   const [filter, setFilter] = useState("all");
@@ -616,7 +561,7 @@ export default function Home() {
                 transition={{ duration: 0.4 }}
                 className="grid grid-cols-1 md:grid-cols-3 gap-8"
               >
-                {FACILITIES.map((fac, idx) => (
+                {(content.facilities || []).map((fac, idx) => (
                   <motion.div
                     key={fac.title}
                     whileHover={{ y: -6 }}
@@ -655,8 +600,8 @@ export default function Home() {
                 transition={{ duration: 0.4 }}
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
               >
-                {EXTRACURRICULARS.map((ekskul, idx) => {
-                  const Icon = ekskul.icon;
+                {(content.extracurriculars || []).map((ekskul, idx) => {
+                  const Icon = ICON_MAP[ekskul.icon] || Award;
                   return (
                     <motion.div
                       key={ekskul.title}
@@ -916,7 +861,7 @@ export default function Home() {
             </div>
 
             <div className="space-y-4">
-              {FAQ_ITEMS.map((faq, idx) => (
+              {(content.faq || []).map((faq, idx) => (
                 <div 
                   key={idx}
                   className="glass-panel border-slate-900 rounded-2xl overflow-hidden shadow-md transition-all duration-300"

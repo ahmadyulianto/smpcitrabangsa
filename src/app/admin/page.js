@@ -53,6 +53,17 @@ export default function AdminDashboard() {
     description: ""
   });
 
+  // State forms for new elements
+  const [newFacility, setNewFacility] = useState({ title: "", desc: "", image: "/school_computer_lab.jpg", badge: "Fasilitas" });
+  const [newEkskul, setNewEkskul] = useState({
+    title: "",
+    desc: "",
+    icon: "Award",
+    color: "text-brand-gold bg-brand-gold/10 border-brand-gold/20"
+  });
+  const [newFaq, setNewFaq] = useState({ q: "", a: "" });
+  const [newPortal, setNewPortal] = useState({ label: "", url: "#" });
+
   useEffect(() => {
     // Check if password already stored in sessionStorage
     const storedAuth = sessionStorage.getItem("adminAuth");
@@ -256,6 +267,107 @@ export default function AdminDashboard() {
       const updated = content.programs.filter((_, i) => i !== idx);
       setContent(prev => ({ ...prev, programs: updated }));
       showStatus("success", "Program telah dihapus! Klik 'Simpan Perubahan' untuk menerapkan.");
+    }
+  };
+
+  // Facilities Helpers
+  const updateFacilityField = (idx, field, val) => {
+    const newFacilities = [...(content.facilities || [])];
+    newFacilities[idx][field] = val;
+    setContent(prev => ({ ...prev, facilities: newFacilities }));
+  };
+
+  const handleAddFacility = (e) => {
+    e.preventDefault();
+    if (!newFacility.title || !newFacility.desc) return;
+    const updated = [...(content.facilities || []), newFacility];
+    setContent(prev => ({ ...prev, facilities: updated }));
+    setNewFacility({ title: "", desc: "", image: "/school_computer_lab.jpg", badge: "Fasilitas" });
+    showStatus("success", `Fasilitas "${newFacility.title}" berhasil ditambahkan! Klik "Simpan Perubahan" untuk menyimpan.`);
+  };
+
+  const handleDeleteFacility = (idx) => {
+    if (confirm("Apakah Anda yakin ingin menghapus fasilitas ini?")) {
+      const updated = (content.facilities || []).filter((_, i) => i !== idx);
+      setContent(prev => ({ ...prev, facilities: updated }));
+      showStatus("success", "Fasilitas berhasil dihapus! Klik 'Simpan Perubahan' untuk menerapkan.");
+    }
+  };
+
+  // Extracurricular Helpers
+  const updateEkskulField = (idx, field, val) => {
+    const newEkskulList = [...(content.extracurriculars || [])];
+    newEkskulList[idx][field] = val;
+    setContent(prev => ({ ...prev, extracurriculars: newEkskulList }));
+  };
+
+  const handleAddEkskul = (e) => {
+    e.preventDefault();
+    if (!newEkskul.title || !newEkskul.desc) return;
+    const updated = [...(content.extracurriculars || []), newEkskul];
+    setContent(prev => ({ ...prev, extracurriculars: updated }));
+    setNewEkskul({
+      title: "",
+      desc: "",
+      icon: "Award",
+      color: "text-brand-gold bg-brand-gold/10 border-brand-gold/20"
+    });
+    showStatus("success", `Ekstrakurikuler "${newEkskul.title}" berhasil ditambahkan! Klik "Simpan Perubahan" untuk menyimpan.`);
+  };
+
+  const handleDeleteEkskul = (idx) => {
+    if (confirm("Apakah Anda yakin ingin menghapus ekstrakurikuler ini?")) {
+      const updated = (content.extracurriculars || []).filter((_, i) => i !== idx);
+      setContent(prev => ({ ...prev, extracurriculars: updated }));
+      showStatus("success", "Ekstrakurikuler berhasil dihapus! Klik 'Simpan Perubahan' untuk menerapkan.");
+    }
+  };
+
+  // FAQ Helpers
+  const updateFaqField = (idx, field, val) => {
+    const newFaqList = [...(content.faq || [])];
+    newFaqList[idx][field] = val;
+    setContent(prev => ({ ...prev, faq: newFaqList }));
+  };
+
+  const handleAddFaq = (e) => {
+    e.preventDefault();
+    if (!newFaq.q || !newFaq.a) return;
+    const updated = [...(content.faq || []), newFaq];
+    setContent(prev => ({ ...prev, faq: updated }));
+    setNewFaq({ q: "", a: "" });
+    showStatus("success", "FAQ baru berhasil ditambahkan! Klik \"Simpan Perubahan\" untuk menyimpan.");
+  };
+
+  const handleDeleteFaq = (idx) => {
+    if (confirm("Apakah Anda yakin ingin menghapus FAQ ini?")) {
+      const updated = (content.faq || []).filter((_, i) => i !== idx);
+      setContent(prev => ({ ...prev, faq: updated }));
+      showStatus("success", "FAQ berhasil dihapus! Klik 'Simpan Perubahan' untuk menerapkan.");
+    }
+  };
+
+  // Portal Helpers
+  const updatePortalField = (idx, field, val) => {
+    const newPortalList = [...(content.portals || [])];
+    newPortalList[idx][field] = val;
+    setContent(prev => ({ ...prev, portals: newPortalList }));
+  };
+
+  const handleAddPortal = (e) => {
+    e.preventDefault();
+    if (!newPortal.label) return;
+    const updated = [...(content.portals || []), newPortal];
+    setContent(prev => ({ ...prev, portals: updated }));
+    setNewPortal({ label: "", url: "#" });
+    showStatus("success", `Portal "${newPortal.label}" berhasil ditambahkan! Klik "Simpan Perubahan" untuk menyimpan.`);
+  };
+
+  const handleDeletePortal = (idx) => {
+    if (confirm("Apakah Anda yakin ingin menghapus link portal ini?")) {
+      const updated = (content.portals || []).filter((_, i) => i !== idx);
+      setContent(prev => ({ ...prev, portals: updated }));
+      showStatus("success", "Portal berhasil dihapus! Klik 'Simpan Perubahan' untuk menerapkan.");
     }
   };
 
@@ -535,6 +647,33 @@ export default function AdminDashboard() {
             >
               <Phone className="w-4 h-4 shrink-0" />
               <span>Hubungi Kami</span>
+            </button>
+            <button
+              onClick={() => setActiveTab("facilities")}
+              className={`w-full flex items-center space-x-2.5 px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 ${
+                activeTab === "facilities" ? "bg-emerald-500 text-slate-950 shadow-md" : "text-slate-400 hover:bg-slate-900/50 hover:text-white"
+              }`}
+            >
+              <ImageIcon className="w-4 h-4 shrink-0" />
+              <span>Fasilitas & Ekskul</span>
+            </button>
+            <button
+              onClick={() => setActiveTab("faq")}
+              className={`w-full flex items-center space-x-2.5 px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 ${
+                activeTab === "faq" ? "bg-emerald-500 text-slate-950 shadow-md" : "text-slate-400 hover:bg-slate-900/50 hover:text-white"
+              }`}
+            >
+              <FileText className="w-4 h-4 shrink-0" />
+              <span>FAQ PPDB</span>
+            </button>
+            <button
+              onClick={() => setActiveTab("portals")}
+              className={`w-full flex items-center space-x-2.5 px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 ${
+                activeTab === "portals" ? "bg-emerald-500 text-slate-950 shadow-md" : "text-slate-400 hover:bg-slate-900/50 hover:text-white"
+              }`}
+            >
+              <Link className="w-4 h-4 shrink-0" />
+              <span>Portal Internal</span>
             </button>
           </div>
 
@@ -1399,6 +1538,413 @@ export default function AdminDashboard() {
                     className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
                   />
                 </div>
+              </div>
+
+              {/* Save trigger */}
+              <div className="pt-4 border-t border-slate-900/60 flex justify-end">
+                <button
+                  onClick={saveContent}
+                  disabled={saving}
+                  className="flex items-center space-x-2 px-6 py-3 rounded-xl font-display font-bold text-slate-950 bg-emerald-500 hover:bg-emerald-400 transition-colors duration-200 text-sm cursor-pointer disabled:opacity-50"
+                >
+                  <Save className="w-4 h-4" />
+                  <span>{saving ? "Menyimpan..." : "Simpan Perubahan"}</span>
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* TAB: FACILITIES & EKSTRAKURIKULER */}
+          {activeTab === "facilities" && (
+            <div className="space-y-8">
+              {/* SECTION A: FASILITAS SEKOLAH */}
+              <div className="glass-panel rounded-3xl p-6 sm:p-8 border-slate-900 space-y-6 shadow-lg">
+                <div className="border-b border-slate-900 pb-4 flex justify-between items-center">
+                  <div>
+                    <h2 className="font-display font-bold text-lg text-white">Kelola Fasilitas Sekolah</h2>
+                    <p className="text-slate-400 text-xs">Ubah detail dan visual fasilitas berstandar tinggi milik sekolah.</p>
+                  </div>
+                </div>
+
+                {/* Form Tambah Fasilitas */}
+                <form onSubmit={handleAddFacility} className="p-4 rounded-2xl bg-slate-950/60 border border-slate-900 space-y-4">
+                  <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider block">Tambah Fasilitas Baru</span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Nama Fasilitas</label>
+                      <input
+                        type="text"
+                        placeholder="Contoh: AI & Computer Lab"
+                        value={newFacility.title}
+                        onChange={(e) => setNewFacility(prev => ({ ...prev, title: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Kategori / Badge</label>
+                      <input
+                        type="text"
+                        placeholder="Contoh: Teknologi / Akademik"
+                        value={newFacility.badge}
+                        onChange={(e) => setNewFacility(prev => ({ ...prev, badge: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">URL Gambar (Rasio 16:9)</label>
+                      <input
+                        type="text"
+                        placeholder="Contoh: /school_computer_lab.jpg"
+                        value={newFacility.image}
+                        onChange={(e) => setNewFacility(prev => ({ ...prev, image: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Deskripsi Singkat</label>
+                      <input
+                        type="text"
+                        placeholder="Masukkan deskripsi penjelasan..."
+                        value={newFacility.desc}
+                        onChange={(e) => setNewFacility(prev => ({ ...prev, desc: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="flex justify-end">
+                    <button
+                      type="submit"
+                      className="flex items-center space-x-2 px-5 py-2.5 rounded-xl font-display font-semibold text-slate-950 bg-emerald-500 hover:bg-emerald-400 transition-colors duration-200 text-xs cursor-pointer"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                      <span>Tambahkan Fasilitas</span>
+                    </button>
+                  </div>
+                </form>
+
+                {/* List Fasilitas */}
+                <div className="space-y-4 pt-4">
+                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Daftar Fasilitas Saat Ini ({(content.facilities || []).length})</span>
+                  {(content.facilities || []).map((fac, idx) => (
+                    <div key={idx} className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-xl bg-slate-950 border border-slate-900 gap-4">
+                      <div className="flex items-center space-x-4 min-w-0 flex-1 w-full">
+                        <div className="relative w-16 h-10 rounded-lg overflow-hidden bg-slate-900 shrink-0 border border-slate-800">
+                          <img src={fac.image} alt={fac.title} className="w-full h-full object-cover" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <span className="px-2 py-0.5 text-[8px] font-bold bg-emerald-950 text-emerald-400 rounded-full border border-emerald-900 uppercase tracking-wider">{fac.badge}</span>
+                          <h4 className="font-display font-bold text-sm text-slate-100 mt-1">{fac.title}</h4>
+                          <p className="text-[11px] text-slate-400 truncate mt-0.5">{fac.desc}</p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => handleDeleteFacility(idx)}
+                        className="p-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-red-950/40 hover:border-red-900/60 text-slate-400 hover:text-red-500 transition-all duration-200 cursor-pointer"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Save trigger */}
+                <div className="pt-4 border-t border-slate-900/60 flex justify-end">
+                  <button
+                    onClick={saveContent}
+                    disabled={saving}
+                    className="flex items-center space-x-2 px-6 py-3 rounded-xl font-display font-bold text-slate-950 bg-emerald-500 hover:bg-emerald-400 transition-colors duration-200 text-sm cursor-pointer disabled:opacity-50"
+                  >
+                    <Save className="w-4 h-4" />
+                    <span>{saving ? "Menyimpan..." : "Simpan Perubahan"}</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* SECTION B: EKSTRAKURIKULER */}
+              <div className="glass-panel rounded-3xl p-6 sm:p-8 border-slate-900 space-y-6 shadow-lg">
+                <div className="border-b border-slate-900 pb-4">
+                  <h2 className="font-display font-bold text-lg text-white">Kelola Ekstrakurikuler & Komunitas</h2>
+                  <p className="text-slate-400 text-xs">Atur jenis kegiatan ekskul dan komunitas minat bakat murid.</p>
+                </div>
+
+                {/* Form Tambah Ekskul */}
+                <form onSubmit={handleAddEkskul} className="p-4 rounded-2xl bg-slate-950/60 border border-slate-900 space-y-4">
+                  <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider block">Tambah Ekskul Baru</span>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Nama Kegiatan</label>
+                      <input
+                        type="text"
+                        placeholder="Contoh: Robotics Club"
+                        value={newEkskul.title}
+                        onChange={(e) => setNewEkskul(prev => ({ ...prev, title: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Pilihan Ikon</label>
+                      <select
+                        value={newEkskul.icon}
+                        onChange={(e) => setNewEkskul(prev => ({ ...prev, icon: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
+                      >
+                        <option value="Globe">🌍 Globe (Coding/Teknologi)</option>
+                        <option value="Leaf">🌿 Leaf (Sains/Lingkungan)</option>
+                        <option value="Users">👥 Users (Public Speaking/Sosial)</option>
+                        <option value="BookOpen">📖 BookOpen (Tahfidz/Akademik)</option>
+                        <option value="Award">🏆 Award (Umum/Prestasi)</option>
+                      </select>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Skema Warna Desain</label>
+                      <select
+                        value={newEkskul.color}
+                        onChange={(e) => setNewEkskul(prev => ({ ...prev, color: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
+                      >
+                        <option value="text-emerald-400 bg-emerald-500/10 border-emerald-500/20">🟢 Hijau Emerald</option>
+                        <option value="text-green-400 bg-green-500/10 border-green-500/20">🌱 Hijau Muda</option>
+                        <option value="text-blue-400 bg-blue-500/10 border-blue-500/20">🔵 Biru Global</option>
+                        <option value="text-brand-gold bg-brand-gold/10 border-brand-gold/20">🟡 Emas Gold</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Deskripsi Ekskul</label>
+                    <textarea
+                      placeholder="Masukkan deskripsi penjelasan ekskul..."
+                      value={newEkskul.desc}
+                      onChange={(e) => setNewEkskul(prev => ({ ...prev, desc: e.target.value }))}
+                      rows="2"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm resize-none"
+                      required
+                    />
+                  </div>
+                  <div className="flex justify-end">
+                    <button
+                      type="submit"
+                      className="flex items-center space-x-2 px-5 py-2.5 rounded-xl font-display font-semibold text-slate-950 bg-emerald-500 hover:bg-emerald-400 transition-colors duration-200 text-xs cursor-pointer"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                      <span>Tambahkan Ekskul</span>
+                    </button>
+                  </div>
+                </form>
+
+                {/* List Ekskul */}
+                <div className="space-y-4 pt-4">
+                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Daftar Ekstrakurikuler Saat Ini ({(content.extracurriculars || []).length})</span>
+                  {(content.extracurriculars || []).map((ekskul, idx) => (
+                    <div key={idx} className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-xl bg-slate-950 border border-slate-900 gap-4">
+                      <div className="min-w-0 flex-1">
+                        <span className="px-2 py-0.5 text-[8px] font-bold bg-slate-900 text-slate-400 rounded-full border border-slate-800 uppercase tracking-wider">Ikon: {ekskul.icon}</span>
+                        <h4 className="font-display font-bold text-sm text-slate-100 mt-1">{ekskul.title}</h4>
+                        <p className="text-[11px] text-slate-400 truncate mt-0.5">{ekskul.desc}</p>
+                      </div>
+                      <button
+                        onClick={() => handleDeleteEkskul(idx)}
+                        className="p-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-red-950/40 hover:border-red-900/60 text-slate-400 hover:text-red-500 transition-all duration-200 cursor-pointer"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Save trigger */}
+                <div className="pt-4 border-t border-slate-900/60 flex justify-end">
+                  <button
+                    onClick={saveContent}
+                    disabled={saving}
+                    className="flex items-center space-x-2 px-6 py-3 rounded-xl font-display font-bold text-slate-950 bg-emerald-500 hover:bg-emerald-400 transition-colors duration-200 text-sm cursor-pointer disabled:opacity-50"
+                  >
+                    <Save className="w-4 h-4" />
+                    <span>{saving ? "Menyimpan..." : "Simpan Perubahan"}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB: FAQ PPDB */}
+          {activeTab === "faq" && (
+            <div className="glass-panel rounded-3xl p-6 sm:p-8 border-slate-900 space-y-6 shadow-lg">
+              <div className="border-b border-slate-900 pb-4">
+                <h2 className="font-display font-bold text-lg text-white">Kelola Tanya Jawab (FAQ) PPDB</h2>
+                <p className="text-slate-400 text-xs">Kelola daftar pertanyaan penting seputar PPDB dan administrasi sekolah.</p>
+              </div>
+
+              {/* Form Tambah FAQ */}
+              <form onSubmit={handleAddFaq} className="p-4 rounded-2xl bg-slate-950/60 border border-slate-900 space-y-4">
+                <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider block">Tambah FAQ Baru</span>
+                <div className="space-y-2">
+                  <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Pertanyaan</label>
+                  <input
+                    type="text"
+                    placeholder="Contoh: Apa saja syarat berkas pendaftaran PPDB?"
+                    value={newFaq.q}
+                    onChange={(e) => setNewFaq(prev => ({ ...prev, q: e.target.value }))}
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Jawaban Lengkap</label>
+                  <textarea
+                    placeholder="Masukkan jawaban dari pertanyaan di atas..."
+                    value={newFaq.a}
+                    onChange={(e) => setNewFaq(prev => ({ ...prev, a: e.target.value }))}
+                    rows="3"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm resize-none"
+                    required
+                  />
+                </div>
+                <div className="flex justify-end">
+                  <button
+                    type="submit"
+                    className="flex items-center space-x-2 px-5 py-2.5 rounded-xl font-display font-semibold text-slate-950 bg-emerald-500 hover:bg-emerald-400 transition-colors duration-200 text-xs cursor-pointer"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    <span>Tambahkan FAQ</span>
+                  </button>
+                </div>
+              </form>
+
+              {/* List FAQ */}
+              <div className="space-y-4 pt-4">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Daftar Pertanyaan Saat Ini ({(content.faq || []).length})</span>
+                {(content.faq || []).map((faq, idx) => (
+                  <div key={idx} className="p-4 rounded-xl bg-slate-950 border border-slate-900 space-y-3 relative shadow-md">
+                    <div className="flex justify-between items-start gap-4">
+                      <div className="space-y-1 pr-6 flex-grow">
+                        <label className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">Tanya:</label>
+                        <input
+                          type="text"
+                          value={faq.q}
+                          onChange={(e) => updateFaqField(idx, "q", e.target.value)}
+                          className="w-full bg-transparent border-0 border-b border-transparent focus:border-emerald-500/30 text-sm font-semibold text-slate-100 focus:outline-none py-1"
+                        />
+                      </div>
+                      <button
+                        onClick={() => handleDeleteFaq(idx)}
+                        className="absolute top-4 right-4 p-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-red-950/40 hover:border-red-900/60 text-slate-400 hover:text-red-500 transition-all duration-200 cursor-pointer"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Jawab:</label>
+                      <textarea
+                        value={faq.a}
+                        onChange={(e) => updateFaqField(idx, "a", e.target.value)}
+                        rows="2"
+                        className="w-full bg-slate-950/80 border border-slate-900 focus:border-emerald-500 rounded-xl text-xs text-slate-350 focus:outline-none p-3 resize-none"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Save trigger */}
+              <div className="pt-4 border-t border-slate-900/60 flex justify-end">
+                <button
+                  onClick={saveContent}
+                  disabled={saving}
+                  className="flex items-center space-x-2 px-6 py-3 rounded-xl font-display font-bold text-slate-950 bg-emerald-500 hover:bg-emerald-400 transition-colors duration-200 text-sm cursor-pointer disabled:opacity-50"
+                >
+                  <Save className="w-4 h-4" />
+                  <span>{saving ? "Menyimpan..." : "Simpan Perubahan"}</span>
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* TAB: PORTAL INTERNAL */}
+          {activeTab === "portals" && (
+            <div className="glass-panel rounded-3xl p-6 sm:p-8 border-slate-900 space-y-6 shadow-lg">
+              <div className="border-b border-slate-900 pb-4">
+                <h2 className="font-display font-bold text-lg text-white">Kelola Portal Internal Sekolah (Footer)</h2>
+                <p className="text-slate-400 text-xs">Atur daftar link sistem e-learning, sia, kalender, dll. yang tampil di kolom footer.</p>
+              </div>
+
+              {/* Form Tambah Portal */}
+              <form onSubmit={handleAddPortal} className="p-4 rounded-2xl bg-slate-950/60 border border-slate-900 space-y-4">
+                <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider block">Tambah Link Portal Baru</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Nama Link / Label</label>
+                    <input
+                      type="text"
+                      placeholder="Contoh: SIAKAD Sekolah"
+                      value={newPortal.label}
+                      onChange={(e) => setNewPortal(prev => ({ ...prev, label: e.target.value }))}
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Tujuan URL</label>
+                    <input
+                      type="text"
+                      placeholder="Contoh: https://lms.sekolah.sch.id atau #"
+                      value={newPortal.url}
+                      onChange={(e) => setNewPortal(prev => ({ ...prev, url: e.target.value }))}
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-900 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-end">
+                  <button
+                    type="submit"
+                    className="flex items-center space-x-2 px-5 py-2.5 rounded-xl font-display font-semibold text-slate-950 bg-emerald-500 hover:bg-emerald-400 transition-colors duration-200 text-xs cursor-pointer"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    <span>Tambahkan Portal Link</span>
+                  </button>
+                </div>
+              </form>
+
+              {/* List Portal */}
+              <div className="space-y-4 pt-4">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Daftar Link Portal Saat Ini ({(content.portals || []).length})</span>
+                {(content.portals || []).map((portal, idx) => (
+                  <div key={idx} className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-xl bg-slate-950 border border-slate-900 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-grow w-full">
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Nama Label Link</label>
+                        <input
+                          type="text"
+                          value={portal.label}
+                          onChange={(e) => updatePortalField(idx, "label", e.target.value)}
+                          className="w-full px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Tujuan URL</label>
+                        <input
+                          type="text"
+                          value={portal.url}
+                          onChange={(e) => updatePortalField(idx, "url", e.target.value)}
+                          className="w-full px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                        />
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => handleDeletePortal(idx)}
+                      className="p-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-red-950/40 hover:border-red-900/60 text-slate-400 hover:text-red-500 transition-all duration-200 cursor-pointer"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                ))}
               </div>
 
               {/* Save trigger */}

@@ -43,6 +43,13 @@ export default function Footer() {
     email: "info@smpcitrabangsa.sch.id"
   });
 
+  const [portals, setPortals] = useState([
+    { label: "E-Learning / LMS", url: "#" },
+    { label: "Sistem Informasi (SIAKAD)", url: "#" },
+    { label: "Kalender Akademik", url: "#" },
+    { label: "Perpustakaan Digital", url: "#" }
+  ]);
+
   useEffect(() => {
     const fetchNav = async () => {
       try {
@@ -54,6 +61,9 @@ export default function Footer() {
           }
           if (result.content?.contact) {
             setContact(result.content.contact);
+          }
+          if (result.content?.portals) {
+            setPortals(result.content.portals);
           }
         }
       } catch (err) {
@@ -171,26 +181,13 @@ export default function Footer() {
               Portal Internal
             </h3>
             <ul className="space-y-2.5 font-body text-sm text-slate-400">
-              <li>
-                <a href="#" className="hover:text-brand-green-light transition-colors duration-200">
-                  E-Learning / LMS
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-brand-green-light transition-colors duration-200">
-                  Sistem Informasi (SIAKAD)
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-brand-green-light transition-colors duration-200">
-                  Kalender Akademik
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-brand-green-light transition-colors duration-200">
-                  Perpustakaan Digital
-                </a>
-              </li>
+              {portals.map((portal) => (
+                <li key={portal.label}>
+                  <a href={portal.url} className="hover:text-brand-green-light transition-colors duration-200">
+                    {portal.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 

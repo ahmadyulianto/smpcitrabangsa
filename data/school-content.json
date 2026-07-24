@@ -3,25 +3,13 @@
     "badge": "🌱 Trabas Enviropreneur School",
     "title": "SMP Citra Bangsa Bondowoso",
     "subtitle": "Menyiapkan generasi unggul yang berjiwa wirausaha, cinta lingkungan, dan berlandaskan nilai-nilai Al-Qur'an. Belajar, Berkreasi, Beraksi, dan Berakhlak Qur'ani!",
-    "videoUrl": "https://www.youtube.com/embed/IXqJI7kQe50?si=zkg-zxI5ePVV2QD3"
+    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
   },
   "stats": [
-    {
-      "label": "Siswa Aktif",
-      "value": 250
-    },
-    {
-      "label": "Guru & Staf",
-      "value": 20
-    },
-    {
-      "label": "Prestasi Nasional",
-      "value": 15
-    },
-    {
-      "label": "Target Tahfidz (Juz)",
-      "value": 15
-    }
+    { "label": "Siswa Aktif", "value": 250 },
+    { "label": "Guru & Staf", "value": 20 },
+    { "label": "Prestasi Nasional", "value": 15 },
+    { "label": "Target Tahfidz (Juz)", "value": 15 }
   ],
   "visiMisi": {
     "visi": "Mewujudkan peserta didik yang berbudi, mandiri dan berprestasi.",
@@ -46,122 +34,120 @@
       "title": "Karakter Global & Tahfidz",
       "desc": "Membeli siswa keterampilan abad ke-21 (komunikasi, berpikir kritis, kolaborasi) dikombinasikan dengan target hafalan Al-Qur'an personalisasi mulai dari 2 Juz hingga 15 Juz.",
       "badge": "Tahfidz & Global"
-    },
-    {
-      "title": "Integrasi Kurikulum Nasional dan Nilai Islam",
-      "desc": "Materi akademik disampaikan menggunakan metode PBL dan PjBL.\nPerspektif Islam dalam Materi: Setiap materi disusun dengan mengaitkan konsep-konsep akademik dengan nilai-nilai Islam.",
-      "badge": "Integrasi Nilai Islam"
     }
   ],
   "navItems": [
-    {
-      "label": "Profil Sekolah",
-      "href": "#visi-misi"
-    },
-    {
-      "label": "Program & Fasilitas",
-      "href": "#program"
-    },
-    {
-      "label": "Berita & Prestasi",
-      "href": "#prestasi"
-    },
-    {
-      "label": "PPDB / Pendaftaran",
-      "href": "#ppdb"
-    }
+    { "label": "Profil Sekolah", "href": "#visi-misi" },
+    { "label": "Program & Fasilitas", "href": "#program" },
+    { "label": "Berita & Prestasi", "href": "#prestasi" },
+    { "label": "PPDB / Pendaftaran", "href": "#ppdb" }
   ],
   "prestasi": [
-    {
-      "kategori": "Nasional",
-      "nama": "Juara 1 Tanding Pra Remaja Putra",
-      "pemenang": "Kejuaraan Pencak Silat Jember National (Piala Kemenpora)"
-    },
-    {
-      "kategori": "Nasional",
-      "nama": "Juara 1 Pomsae Junior Putra",
-      "pemenang": "Piala Kemenpora Taekwondo Bhayangkara Presisi II Yogyakarta"
-    },
-    {
-      "kategori": "Nasional",
-      "nama": "Juara 2 Tanding Pra Remaja Putra",
-      "pemenang": "Kejuaraan Pencak Silat Jember National (Piala Kemenpora)"
-    },
-    {
-      "kategori": "Nasional",
-      "nama": "Juara 2 Seni Tunggal Tangan Putri",
-      "pemenang": "Kejuaraan Pencak Silat Jember National (Piala Kemenpora)"
-    },
-    {
-      "kategori": "Nasional",
-      "nama": "Juara 3 Tanding Pra Remaja Putra",
-      "pemenang": "Kejuaraan Pencak Silat IPSI Malang Championship (Piala Kemenpora)"
-    },
-    {
-      "kategori": "Provinsi",
-      "nama": "Juara 1 Kumite 30 kg",
-      "pemenang": "Unmuh Jember Open Karate"
-    },
-    {
-      "kategori": "Provinsi",
-      "nama": "Juara 2 Kumite +50 kg SMP Putra",
-      "pemenang": "Kejuaraan Karate Piala Panglima TNI Surabaya"
-    },
-    {
-      "kategori": "Provinsi",
-      "nama": "Juara 2 Kata Perorangan SMP Putra",
-      "pemenang": "5th Festival Karate Championship Piala Pangdivif"
-    },
-    {
-      "kategori": "Provinsi",
-      "nama": "Juara 3 Kumite +70 kg",
-      "pemenang": "Unmuh Jember Open Karate"
-    },
-    {
-      "kategori": "Provinsi",
-      "nama": "Juara 3 Kata Beregu SMP Putra",
-      "pemenang": "5th Festival Karate Championship Piala Pangdivif"
-    },
-    {
-      "kategori": "Kabupaten",
-      "nama": "Juara 1 Story Telling",
-      "pemenang": "Angel Firdausa - Smasa Ekskul Competition"
-    },
-    {
-      "kategori": "Kabupaten",
-      "nama": "Juara 1 Lomba Tartil Al-Qur'an",
-      "pemenang": "Tsabitah Khairun Nisa - Ekskul Competition"
-    },
-    {
-      "kategori": "Kabupaten",
-      "nama": "Juara 1 Seni Tunggal Putri",
-      "pemenang": "Pencak Silat - Bupati Cup IPSI"
-    },
-    {
-      "kategori": "Kabupaten",
-      "nama": "Juara 1 Tanding Putra",
-      "pemenang": "Pencak Silat - Bupati Cup IPSI"
-    },
-    {
-      "kategori": "Kabupaten",
-      "nama": "Juara 1 Tanding Putri",
-      "pemenang": "Pencak Silat - Bupati Cup IPSI"
-    },
-    {
-      "kategori": "Kabupaten",
-      "nama": "Juara 2 Lomba Bahasa Inggris",
-      "pemenang": "Dies Natalis SMKN 1 Bondowoso"
-    },
-    {
-      "kategori": "Kabupaten",
-      "nama": "Juara 3 Lomba E-Sport MLBB",
-      "pemenang": "Kejuaraan ESI Bondowoso"
-    }
+    { "kategori": "Nasional", "nama": "Juara 1 Tanding Pra Remaja Putra", "pemenang": "Kejuaraan Pencak Silat Jember National (Piala Kemenpora)" },
+    { "kategori": "Nasional", "nama": "Juara 1 Pomsae Junior Putra", "pemenang": "Piala Kemenpora Taekwondo Bhayangkara Presisi II Yogyakarta" },
+    { "kategori": "Nasional", "nama": "Juara 2 Tanding Pra Remaja Putra", "pemenang": "Kejuaraan Pencak Silat Jember National (Piala Kemenpora)" },
+    { "kategori": "Nasional", "nama": "Juara 2 Seni Tunggal Tangan Putri", "pemenang": "Kejuaraan Pencak Silat Jember National (Piala Kemenpora)" },
+    { "kategori": "Nasional", "nama": "Juara 3 Tanding Pra Remaja Putra", "pemenang": "Kejuaraan Pencak Silat IPSI Malang Championship (Piala Kemenpora)" },
+    { "kategori": "Provinsi", "nama": "Juara 1 Kumite 30 kg", "pemenang": "Unmuh Jember Open Karate" },
+    { "kategori": "Provinsi", "nama": "Juara 2 Kumite +50 kg SMP Putra", "pemenang": "Kejuaraan Karate Piala Panglima TNI Surabaya" },
+    { "kategori": "Provinsi", "nama": "Juara 2 Kata Perorangan SMP Putra", "pemenang": "5th Festival Karate Championship Piala Pangdivif" },
+    { "kategori": "Provinsi", "nama": "Juara 3 Kumite +70 kg", "pemenang": "Unmuh Jember Open Karate" },
+    { "kategori": "Provinsi", "nama": "Juara 3 Kata Beregu SMP Putra", "pemenang": "5th Festival Karate Championship Piala Pangdivif" },
+    { "kategori": "Kabupaten", "nama": "Juara 1 Story Telling", "pemenang": "Angel Firdausa - Smasa Ekskul Competition" },
+    { "kategori": "Kabupaten", "nama": "Juara 1 Lomba Tartil Al-Qur'an", "pemenang": "Tsabitah Khairun Nisa - Ekskul Competition" },
+    { "kategori": "Kabupaten", "nama": "Juara 1 Seni Tunggal Putri", "pemenang": "Pencak Silat - Bupati Cup IPSI" },
+    { "kategori": "Kabupaten", "nama": "Juara 1 Tanding Putra", "pemenang": "Pencak Silat - Bupati Cup IPSI" },
+    { "kategori": "Kabupaten", "nama": "Juara 1 Tanding Putri", "pemenang": "Pencak Silat - Bupati Cup IPSI" },
+    { "kategori": "Kabupaten", "nama": "Juara 2 Lomba Bahasa Inggris", "pemenang": "Dies Natalis SMKN 1 Bondowoso" },
+    { "kategori": "Kabupaten", "nama": "Juara 3 Lomba E-Sport MLBB", "pemenang": "Kejuaraan ESI Bondowoso" }
   ],
   "contact": {
     "address": "Jl. Diponegoro, RT 09/RW 02, Desa Poncogati, Kecamatan Curahdami, Kabupaten Bondowoso, Jawa Timur 68251",
     "whatsapp": "6285335470631",
     "whatsappText": "+62 853-3547-0631",
-    "mapsUrl": "https://maps.google.com/?q=SMP+Citra+Bangsa+Bondowoso+Curahdami"
-  }
+    "mapsUrl": "https://maps.google.com/?q=SMP+Citra+Bangsa+Bondowoso+Curahdami",
+    "email": "info@smpcitrabangsa.sch.id"
+  },
+  "facilities": [
+    {
+      "title": "AI & Computer Lab",
+      "desc": "Laboratorium komputer modern yang dilengkapi modul pembelajaran pemrograman (coding) dan pengenalan Artificial Intelligence.",
+      "image": "/school_computer_lab.jpg",
+      "badge": "Teknologi"
+    },
+    {
+      "title": "Eco Green Library",
+      "desc": "Perpustakaan sejuk terintegrasi area terbuka hijau (outdoor) untuk menumbuhkan minat membaca dalam suasana asri Curahdami.",
+      "image": "/school_eco_library.jpg",
+      "badge": "Literasi"
+    },
+    {
+      "title": "Multimedia Smart Class",
+      "desc": "Ruang kelas modern ber-AC dilengkapi proyektor interaktif, smartboard, dan layout meja kolaboratif untuk Project-Based Learning.",
+      "image": "/school_smart_classroom.jpg",
+      "badge": "Akademik"
+    }
+  ],
+  "extracurriculars": [
+    {
+      "title": "Coding & Robotics Club",
+      "desc": "Mengasah kemampuan Computational Thinking melalui pembuatan program, game, dan perakitan robot pintar berbasis Arduino.",
+      "icon": "Globe",
+      "color": "text-emerald-400 bg-emerald-500/10 border-emerald-500/20"
+    },
+    {
+      "title": "Sains & Enviro Club",
+      "desc": "Eksplorasi penelitian sains terapan, budidaya hidroponik sekolah, dan pembuatan produk daur ulang kreatif bernilai ekonomi.",
+      "icon": "Leaf",
+      "color": "text-green-400 bg-green-500/10 border-green-500/20"
+    },
+    {
+      "title": "Public Speaking & English Club",
+      "desc": "Melatih rasa percaya diri siswa untuk berbicara di depan umum, debat bahasa Inggris, dan seni bercerita (storytelling).",
+      "icon": "Users",
+      "color": "text-blue-400 bg-blue-500/10 border-blue-500/20"
+    },
+    {
+      "title": "Tahfidz Center & Hadrah",
+      "desc": "Pusat pembinaan hafalan Al-Qur'an intensif diiringi kegiatan seni musik islami hadrah kearifan lokal.",
+      "icon": "BookOpen",
+      "color": "text-brand-gold bg-brand-gold/10 border-brand-gold/20"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Apa saja syarat berkas pendaftaran PPDB?",
+      "a": "Persyaratan berkas meliputi: Fotokopi Akta Kelahiran, Fotokopi Kartu Keluarga (KK), Fotokopi Rapor kelas 4-6 SD/MI, Pasfoto terbaru ukuran 3x4 (3 lembar), dan Surat Keterangan Lulus (SKL) jika sudah diterbitkan."
+    },
+    {
+      "q": "Bagaimana alur seleksi penerimaan murid baru?",
+      "a": "Alur pendaftaran terdiri dari 3 tahap: (1) Mengisi formulir konsultasi cepat secara online, (2) Mengikuti wawancara potensi siswa & observasi tahfidz (untuk penempatan kelas), (3) Pengumuman hasil dan verifikasi dokumen fisik di sekolah."
+    },
+    {
+      "q": "Apakah tersedia program beasiswa?",
+      "a": "Tentu saja! Kami memiliki program unggulan beasiswa: (1) Beasiswa Tahfidz Al-Qur'an (potongan biaya SPP sesuai hafalan juz), (2) Beasiswa Prestasi Akademik/Non-Akademik (bukti sertifikat juara minimal tingkat kabupaten)."
+    },
+    {
+      "q": "Bagaimana cara melakukan konfirmasi pembayaran?",
+      "a": "Setelah dinyatakan diterima, Panitia PPDB akan mengirimkan rincian administrasi. Konfirmasi dan bukti transfer dana pendaftaran dapat langsung dikirim via WhatsApp ke nomor CS resmi kami."
+    }
+  ],
+  "portals": [
+    {
+      "label": "E-Learning / LMS",
+      "url": "#"
+    },
+    {
+      "label": "Sistem Informasi (SIAKAD)",
+      "url": "#"
+    },
+    {
+      "label": "Kalender Akademik",
+      "url": "#"
+    },
+    {
+      "label": "Perpustakaan Digital",
+      "url": "#"
+    }
+  ]
 }
